@@ -19,7 +19,7 @@ interface InterfaceAuthDataSource
 	 * Gives back any kind of data if the user is authenticated, else nothing.
 	 * it depends on your implemetation how and what you store here. It is 
 	 * recommended to store user releated data here, or something that is 
-	 * releated to that, but feel free to make it wokt the way that serves 
+	 * releated to that, but feel free to make it work the way that serves 
 	 * better your purposes.
      
 	 * @return mixed

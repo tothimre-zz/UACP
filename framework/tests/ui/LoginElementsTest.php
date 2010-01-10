@@ -1,5 +1,6 @@
 <?php
-require_once './UacpMockFactoryTestCase.php';
+
+require_once 'tests/UacpMockFactoryTestCase.php';
 
 class LoginElementsTest extends UacpMockFactoryTestCase
 {
@@ -10,8 +11,7 @@ class LoginElementsTest extends UacpMockFactoryTestCase
 		$mockLoginElements=$this->getLoginElementsMock();
              
 		$this->assertEquals($mockLoginElements->getUserString(),null);
-		 
-		 
+		  
 		$mockLoginElements->getAuth()->logIn('fooser','foopass');	
 		$mockLoginElements->getUserString();
 		$this->assertTrue($mockLoginElements->getUserString()!=null);
@@ -23,8 +23,7 @@ class LoginElementsTest extends UacpMockFactoryTestCase
 		$mockLoginElements=$this->getLoginElementsMock();
     			 
 		$mockLoginElements->getAuth()->logIn('fooser','foopass');	
-		
-		
+				
 		$this->assertTrue(strpos($mockLoginElements->getInputUser(),'input')!=false);
 		$this->assertTrue(strpos($mockLoginElements->getInputUser(),'type="text"')!=false);
 		$this->assertTrue(strpos($mockLoginElements->getInputUser(),'name="uacp_user"')!=false);
@@ -57,17 +56,18 @@ class LoginElementsTest extends UacpMockFactoryTestCase
 		$this->assertTrue(strpos($mockLoginElements->getSubmit(),'name="uacp_submit"')!=false);
 		$this->assertTrue(strpos($mockLoginElements->getSubmit(),'class="uacp_submit"')!=false);
 		$this->assertTrue(strpos($mockLoginElements->getSubmit(),'id="uacp_submit_id"')!=false);		    	
+		
+		/*
+		 * If the user is logged in it gives back different value, contracting 
+		 * to if it is not.
+		 */
+		$logOutSubmit=$mockLoginElements->getSubmit();
+		$mockLoginElements->getAuth()->logOut();
+		$logInSubmit=$mockLoginElements->getSubmit();
+
+		$this->assertTrue($logOutSubmit!=$logInSubmit);
+		
 	}
-	/* For later implementationn
-	public function testGetMsg()
-    {   
-    	 
-    }
-    
-    public function testGetMsgError()
-    {   
-    	 
-    }*/
 	
 }
 ?>

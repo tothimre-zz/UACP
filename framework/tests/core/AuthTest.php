@@ -1,5 +1,5 @@
 <?php
-require_once './UacpMockFactoryTestCase.php';
+require_once 'tests/UacpMockFactoryTestCase.php';
 
 class AuthTest extends UacpMockFactoryTestCase
 {
@@ -18,15 +18,18 @@ class AuthTest extends UacpMockFactoryTestCase
 		//Once aggin with wrong userdata to check if the flush works as it should.
 		$authMock->logIn('foother','');
 		$this->assertEquals($authMock->getLoginData(), null);
+		
+		$authMock->logOut();
+		
+		return $authMock;
 	}
 
 	/**
 	 *
 	 * @depends testGetLoginData
 	 */
-	public function testIsLoggedIn()
+	public function testIsLoggedIn($authMock)
 	{
-		$authMock=$this->getAuthMock();
 		//Testing with wrong userdata.
 		$authMock->logIn('foother','');
 		$this->assertEquals($authMock->isLoggedIn(), null);
@@ -38,6 +41,8 @@ class AuthTest extends UacpMockFactoryTestCase
 		//Once aggin with wrong userdata to check if the flush works as it should.
 		$authMock->logIn('foother','');
 		$this->assertEquals($authMock->isLoggedIn(), null);
+		
+		return $authMock;
 		 
 	}
 
@@ -45,11 +50,20 @@ class AuthTest extends UacpMockFactoryTestCase
 	 * @depends testIsLoggedIn
 	 *
 	 */
-	public function testLogIn()
+	public function testLogIn($authMock)
 	{
-		$authMock=$this->getAuthMock();
-		$authMock->logIn('fooser','foopass');
-		$this->assertFalse($authMock->isLoggedIn()==null);
+		$this->assertTrue($authMock->isLoggedIn()==null);
+		return $authMock;
+	}
+		/**
+	 * @depends testLogIn
+	 *
+	 */
+	
+	public function testLogout($authMock)
+	{
+		$authMock->logOut();
+		$this->assertTrue($authMock->isLoggedIn()==null);
 	}
 }
 

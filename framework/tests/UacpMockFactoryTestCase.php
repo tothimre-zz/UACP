@@ -1,5 +1,5 @@
 <?php
-require_once '../src/autoload.php';
+require_once 'autoload.php';
 
 /**
  * This class simple gives mock objects for testing purposes.
@@ -8,7 +8,7 @@ require_once '../src/autoload.php';
 class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * This function gives bsck an instence of the MockAuthClass
+	 * This function gives back an instance of the MockAuthClass
 	 *
 	 * @return MockAuthClass
 	 * 

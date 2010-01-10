@@ -1,5 +1,4 @@
 <?php 
-require_once 'autoload.php';
 
 /**
  * This abstract class models the default user log in scenario. It is useable  
