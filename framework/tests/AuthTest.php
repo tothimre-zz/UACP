@@ -1,7 +1,7 @@
 <?php
-require_once '../src/autoload.php';
+require_once './UacpMockFactoryTestCase.php';
 
-class AuthTest extends AuthMockTestCase
+class AuthTest extends UacpMockFactoryTestCase
 {
 
 	public function testGetLoginData()
@@ -18,13 +18,11 @@ class AuthTest extends AuthMockTestCase
 		//Once aggin with wrong userdata to check if the flush works as it should.
 		$authMock->logIn('foother','');
 		$this->assertEquals($authMock->getLoginData(), null);
-
 	}
 
 	/**
 	 *
 	 * @depends testGetLoginData
-	 *
 	 */
 	public function testIsLoggedIn()
 	{

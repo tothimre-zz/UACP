@@ -1,12 +1,17 @@
 <?php
 require_once '../src/autoload.php';
 
+/**
+ * This class simple gives mock objects for testing purposes.
+ *
+ */
 class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * This function gives bsck an instence of the MockAuthClass
 	 *
 	 * @return MockAuthClass
+	 * 
 	 */
 	public function getAuthMock()
 	{
@@ -15,6 +20,10 @@ class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
 	
 	public function getLoginElementsMock()
 	{
+		$AuthMock=$this->getAuthMock();
+		
+		$params[]=$AuthMock;
+		
 		$mockLoginElements = $this->getMockForAbstractClass('LoginElements',$params);
 		
 		$mockLoginElements->expects($this->any())
@@ -27,16 +36,16 @@ class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
 
 /**
  * This class is needed because you cannot simply use the 
- * getMockForAbstractClass to 
+ * getMockForAbstractClass to the initialisation, because the "enviroment"
+ * is modelled in this particular class, it is easy to test.
  *
  */
 class MockAuthClass extends Auth{
 
 	private $userInfo=null;
-	private $msg=null;
-	private $msgError;
 	
 	public function authenticate($user, $pass)
+	
 	{
 		if($user=='fooser' && $pass=='foopass')
 		{

@@ -1,38 +1,26 @@
 <?php
+require_once './UacpMockFactoryTestCase.php';
 
-class LoginElementsTest extends PHPUnit_Framework_TestCase
+class LoginBoxTest extends UacpMockFactoryTestCase
 {
-	public function testSetUp()
-	{	
-	}
-	
-    public function testGetValueUser()
-    {
-    }
-    
-    public function testGetInputUser()
-    {
-    }
-    
-    public function testGetInputPassword()
-    {    
-    }
-    
-    public function testGetMsg()
-    {    
-    }
-    
-    public function testGetMsgError()
-    {    
-    }
-    
-	public function testGetInputButton()
-	{		
-	}
-	
-	public function setFormAction()
-	{
+	public function testShow()
+    {   
+		$AuthMock=$this->getAuthMock();
 		
-	}
+		$params[]=$AuthMock;
+		$mockLoginElements = $this->getMockForAbstractClass('LoginElements',$params);
+		
+		$mockLoginElements->expects($this->any())
+        	->method('getUserStringFromAuth')
+			->will($this->returnValue('fooser'));
+             
+		$this->assertEquals($mockLoginElements->getUserString(),null);
+		 
+		 
+		$AuthMock->logIn('fooser','foopass');	
+		$mockLoginElements->getUserString();
+		$this->assertTrue($mockLoginElements->getUserString()!=null);
+    	
+    }
 }
 ?>

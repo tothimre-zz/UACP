@@ -4,9 +4,9 @@ interface InterfaceAuthProcess
 {
 
 	/**
-	 * Checks wether the current user is authenticated or not
-	 * It gives back the authentication data if it is logged in
-	 * if not it returns simple null.
+	 * Checks wether the current user is authenticated or not, if it is logged
+	 * in the system gives back the date what you store form the user in your 
+	 * system, it can be object, array, strin or wathever you want.
 	 * @return mixed
 	 */
 	public function getLoginData();

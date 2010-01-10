@@ -1,24 +1,18 @@
 <?php
-require_once '../src/autoload.php';
+require_once './UacpMockFactoryTestCase.php';
 
-class LoginElementsTest extends AuthMockTestCase
+class LoginElementsTest extends UacpMockFactoryTestCase
 {
 		
     public function testGetUserString()
     {
-		$AuthMock=$this->getAuthMock();
 		
-		$params[]=$AuthMock;
-		$mockLoginElements = $this->getMockForAbstractClass('LoginElements',$params);
-		
-		$mockLoginElements->expects($this->any())
-        	->method('getUserStringFromAuth')
-			->will($this->returnValue('fooser'));
+		$mockLoginElements=$this->getLoginElementsMock();
              
 		$this->assertEquals($mockLoginElements->getUserString(),null);
 		 
 		 
-		$AuthMock->logIn('fooser','foopass');	
+		$mockLoginElements->getAuth()->logIn('fooser','foopass');	
 		$mockLoginElements->getUserString();
 		$this->assertTrue($mockLoginElements->getUserString()!=null);
     	
@@ -26,16 +20,9 @@ class LoginElementsTest extends AuthMockTestCase
     
     public function testGetInputUser()
     {
-		$AuthMock=$this->getAuthMock();
-		
-		$params[]=$AuthMock;
-		$mockLoginElements = $this->getMockForAbstractClass('LoginElements',$params);
-		
-		$mockLoginElements->expects($this->any())
-        	->method('getUserStringFromAuth')
-			->will($this->returnValue('fooser'));
-		 
-		$AuthMock->logIn('fooser','foopass');	
+		$mockLoginElements=$this->getLoginElementsMock();
+    			 
+		$mockLoginElements->getAuth()->logIn('fooser','foopass');	
 		
 		
 		$this->assertTrue(strpos($mockLoginElements->getInputUser(),'input')!=false);
@@ -49,16 +36,9 @@ class LoginElementsTest extends AuthMockTestCase
     
     public function testGetInputPassword()
     {   
-		$AuthMock=$this->getAuthMock();
-		
-		$params[]=$AuthMock;
-		$mockLoginElements = $this->getMockForAbstractClass('LoginElements',$params);
-		
-		$mockLoginElements->expects($this->any())
-        	->method('getUserStringFromAuth')
-			->will($this->returnValue('fooser'));
-		 
-		$AuthMock->logIn('fooser','foopass');	
+		$mockLoginElements=$this->getLoginElementsMock();
+    			 
+		$mockLoginElements->getAuth()->logIn('fooser','foopass');	
     	
 		$this->assertTrue(strpos($mockLoginElements->getInputPassword(),'input')!=false);
 		$this->assertTrue(strpos($mockLoginElements->getInputPassword(),'name="uacp_pass"')!=false);
@@ -69,16 +49,9 @@ class LoginElementsTest extends AuthMockTestCase
         
 	public function testGetSubmit()
 	{
-		$AuthMock=$this->getAuthMock();
-		
-		$params[]=$AuthMock;
-		$mockLoginElements = $this->getMockForAbstractClass('LoginElements',$params);
-		
-		$mockLoginElements->expects($this->any())
-        	->method('getUserStringFromAuth')
-			->will($this->returnValue('fooser'));
-		 
-		$AuthMock->logIn('fooser','foopass');	
+		$mockLoginElements=$this->getLoginElementsMock();
+				 
+		$mockLoginElements->getAuth()->logIn('fooser','foopass');	
 		
 		$this->assertTrue(strpos($mockLoginElements->getSubmit(),'input')!=false);
 		$this->assertTrue(strpos($mockLoginElements->getSubmit(),'name="uacp_submit"')!=false);

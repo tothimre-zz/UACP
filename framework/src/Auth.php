@@ -1,62 +1,61 @@
 <?php 
 require_once 'autoload.php';
-abstract class Auth implements InterfaceDataSource{
 
 /**
- * Checks wether the current user is authenticated or not
- * It gives back the autentication data if it is logged in
- * if not it is simple null.
- * @return mixed
- */
-	public function getLoginData()
-    {
-    	$authData=$this->getAuthenticatedData();
-    	if($authData){
-    		return $authData;
-    	}
-    	else{
-    		return null;
-    	}
-    }
-	
-	
-/**
- * Checks wether the current user is authenticated or not.
- * if the returning value is true the user is authenticated.
- * @return boolean
- */
-	public function isLoggedIn()
-    {
-    	if($this->getLoginData())
-    	{
-    		return true;
-    	}
-    	else
-    	{
-    		return false;
-    	}
-    }
- 
-/**
- * With this you can authenticate the user, if it is a valid user 
- * stores its information, else flushes the authentication informations. 
+ * This abstract class models the default user log in scenario. It is useable  
+ * in most possible cases. It implements the InterfaceAuthProcess interface 
+ * therefore if you want an Auth object you must implement the 
+ * InterfaceAuthDataSource interface;how to store, flush, and check 
+ * user information in your system.
+ * It is a referenceimplmentation of the InterfaceAuth that is useable in most
+ * cases, it it does not fits for your need fell free to implement the whole
+ * Interface Auth for yourself and us yours, the framework is capable for this.
  * 
- * @param $user
- * User authentication string
- * @param $pass
- * User passpword
  */
-    public function logIn($user,$pass)
-    {
-    	$auth=$this->authenticate($user,$pass);
-    	if ($auth)
-    	{
-    		$this->storeAuthenticatedData($auth);
-    	}
-    	else{
-    		$this->flushAuthenticatedData();
-    	}
-    }
-    	
+abstract class Auth implements InterfaceAuth{
+
+	public function getLoginData()
+	{
+		$authData=$this->getAuthenticatedData();
+		if($authData)
+		{
+			return $authData;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	
+	public function isLoggedIn()
+	{
+		if($this->getLoginData())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+ 
+	public function logIn($user,$pass)
+	{
+		$auth=$this->authenticate($user,$pass);
+		if ($auth)
+		{
+			$this->storeAuthenticatedData($auth);
+		}
+		else
+		{
+			$this->flushAuthenticatedData();
+		}
+	}	
+	
+	public function logOut()
+	{
+		$this->flushAuthenticatedData();		
+	}
 }
 ?>

@@ -1,6 +1,7 @@
 <?php 
 /**
- * This interface 
+ * This interface Is the most important thing to understand in the system
+ * The core abstraction that makes it reuseable is hidden below
  */
 interface InterfaceAuthDataSource
 {

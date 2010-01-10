@@ -1,7 +1,16 @@
-This is the root directory of the UACP that stands for Universal Authentication For PHP.
+This is the root directory of the UACP that stands for 
+Universal Authentication For PHP.
 
 The directory structure you see:
 
-./framework ; Here is the little framework that helps for you to make your authentication flexible and easy.
-./lib ; The libraries needed to run the framework, and the showcase.
-./showcase; Here are the examples to make it look delicious:)
+./framework ; 
+	Here is the little framework that helps for you to make your 
+	authentication flexible and easy.
+	
+./lib ; 
+	The libraries needed to run the framework, and the showcase.
+	(currently there is no dependencies,
+	)
+./showcase; 
+	Here are (will be) the examples to make it look delicious:)
+
