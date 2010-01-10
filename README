@@ -11,5 +11,10 @@ The directory structure you see:
 	The libraries needed to run the framework, and the showcase.
 	(currently there is no dependencies.)
 ./showcase; 
-	Here are (will be) the examples to make it look delicious:)
-
+	Here are (recenty only one) the examples to make it look delicious:)
+	Just copy the framework to your webserver that uses php5, browse the 
+	showcase examples, they automatically starts, you can see how they
+	are working in practice. I use Ubuntu 9.10 with apache and php, so 
+	the application should roun on any compatible configurations, but of 
+	course I will improove the compatibility list more specific in the near
+	future.
