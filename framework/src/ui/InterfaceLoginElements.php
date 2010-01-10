@@ -64,6 +64,14 @@ interface InterfaceLoginElements{
 	/*
 	 * Returns a html form input tag that could represent an imput field for 
 	 * the password of the user.
+	 * 
+	 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	 * It is really important thing to know, that some part of the system 
+	 * pretends (AuthBox) if you use this method's return value in the it's 
+	 * returning value, that you are useing the log in form, if not, than you 
+	 * are using the log out form. 
+	 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	 * 
 	 * There are predefinied fields as name, class, id for future developement
 	 * and easier css formatting.
 	 * 

@@ -9,8 +9,7 @@ The directory structure you see:
 	
 ./lib ; 
 	The libraries needed to run the framework, and the showcase.
-	(currently there is no dependencies,
-	)
+	(currently there is no dependencies.)
 ./showcase; 
 	Here are (will be) the examples to make it look delicious:)
 

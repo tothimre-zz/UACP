@@ -40,7 +40,8 @@ class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
  * is modelled in this particular class, it is easy to test.
  *
  */
-class MockAuthClass extends Auth{
+class MockAuthClass extends Auth
+{
 
 	private $userInfo=null;
 	

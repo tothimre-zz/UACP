@@ -17,17 +17,17 @@
 
 abstract class LoginElements implements InterfaceLoginElements{
 	
-	private $Auth=null;
+	private $auth=null;
 	
-	function __construct(InterfaceAuth $Auth) 
+	function __construct(InterfaceAuth $auth) 
 	{
-		$this->Auth=$Auth;
+		$this->auth=$auth;
 	}
 	
     
 	public function getUserString()
 	{
-		if ($this->Auth->isLoggedIn())
+		if ($this->auth->isLoggedIn())
 		{
 			return $this->getUserStringFromAuth();
 		}
@@ -50,13 +50,13 @@ abstract class LoginElements implements InterfaceLoginElements{
 	public function getSubmit()
 	{
 		$value;
-		if($this->Auth->isLoggedIn())
+		if($this->auth->isLoggedIn())
 		{
-			$value='Log In';
+			$value='Log Out';
 		}
 		else
 		{
-			$value='Log Out';
+			$value='Log In';
 		}
 		
 		return '<input type="submit" name="uacp_submit" value="'.$value.'" class="uacp_submit" id="uacp_submit_id">';
@@ -64,7 +64,7 @@ abstract class LoginElements implements InterfaceLoginElements{
 	
 	public function getAuth()
 	{
-		return $this->Auth;
+		return $this->auth;
 	}
 }
 ?>

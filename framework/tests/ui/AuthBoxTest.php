@@ -7,6 +7,7 @@ class AuthBoxTest extends UacpMockFactoryTestCase
 	public function testShow()
 	{   
 		$LoginElementsMock=$this->getLoginElementsMock();
+		
 		$loginBox=new AuthBox($LoginElementsMock,'url/to/handler');
 		$login=$loginBox->show();
 		

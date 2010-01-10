@@ -55,16 +55,47 @@ class AuthTest extends UacpMockFactoryTestCase
 		$this->assertTrue($authMock->isLoggedIn()==null);
 		return $authMock;
 	}
-		/**
+	
+	/**
 	 * @depends testLogIn
 	 *
 	 */
-	
 	public function testLogout($authMock)
 	{
 		$authMock->logOut();
 		$this->assertTrue($authMock->isLoggedIn()==null);
 	}
+	
+	/**
+	 * @depends testLogout
+	 *
+	 */
+	public function testHandleForm($authMock)
+	{
+		$_POST['uacp_user']='fooser';
+		$_POST['uacp_pass']='foopass';
+		
+	}
+	
+	/*
+	 * 	public function handleForm()
+	{
+		if (isset($_POST))
+		{
+			if(strpos($this->show(),$this->loginElements->getInputPassword())
+				==
+			false)
+			{
+				$this->loginElements->getAuth()->logOut();
+			}
+			else
+			{
+				$this->loginElements->getAuth()->logIn($_POST['uacp_user'],
+											$_POST['uacp_pass']);
+			}
+		}
+	}
+	 */
 }
 
 ?>
