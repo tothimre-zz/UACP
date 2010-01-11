@@ -30,11 +30,11 @@ interface InterfaceAuthProcess
 	 */
 	public function logIn($user,$pass);
 	
-    /**
-     * This function is for logging out a user.
-     * 
-     */
-    public function logOut();
+	/**
+	 * This function is for logging out a user.
+	 * 
+	 */
+	public function logOut();
 	
 }
 ?>
