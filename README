@@ -1,6 +1,30 @@
 This is the root directory of the UACP that stands for 
 Universal Authentication For PHP.
 
+
+
+Welcome to the UACP!
+
+Uacp stands for Universal Auhthetication component For PHP(5)
+
+The aim of this project is to create an easy to (re)use authentication 
+component for PHP applications.
+
+The guiding principles of the project are:
+
+|-Uses only the OOP paradigm, and PHP5.
+|-Well documented, and self documentative.
+|-Easy to reuse.
+|-Database independent.
+|-No external dependencies.
+|-Fully unittested.
+|-This framework supports iterative development, and because of this it is 
+| agile-friendly, So you can easily createh authenticatin related prototypes 
+| with the help of this framework.
+
+===============================================================================
+
+
 The directory structure you see:
 
 ./framework ; 

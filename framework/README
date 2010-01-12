@@ -1,3 +1,5 @@
+The directory structure:
+
 .settings .buildpath .project
     Contain eclipse project information.
 

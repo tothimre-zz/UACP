@@ -1,5 +1,5 @@
 .settings .project .buildpath
-    Entryes contains eclipse project informations and settings
+    Entries contains eclipse project informations and settings
 
 example_01
     contains a reference implementation of the auth box It uses $_SESSION 
