@@ -51,18 +51,7 @@ class AuthBox
 	 * Handles the auth box sumbitted values 
 	 */
 	private function handleForm()
-	{
-		/*
-		if($this->loginElements->getAuth()->isLoggedIn())
-		{
-			echo'LOGGEDIN';
-		}
-		else
-		{
-			echo'NOTLOGGEDIN';
-		}
-		*/
-		
+	{		
 		$params=$this->getParams();
 		if ($params)
 		{
@@ -77,6 +66,7 @@ class AuthBox
 			}
 		}
 	}
+	
 	/**
 	 * This function is the reashon why this cass defined
 	 * @return unknown_type
@@ -135,6 +125,5 @@ class AuthBox
 						
 		}
 	}
-
 }
 ?>

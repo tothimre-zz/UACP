@@ -2,11 +2,11 @@
     Contain eclipse project information.
 
 doc
-    Here you will find the generated api for the project
+    Here you will find the generated api for the project.
 
 src
     Here is the framework itself.
 
 tests
     Here are the tests for the framework you can run them to by executing  the 
-    "phpunit tests" command from the commandline.
+    "phpunit tests" command from the commandline. The tests depend on phpunit 3.4.6.

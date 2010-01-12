@@ -1,7 +1,6 @@
 <?php
 /**
- * This is function should be replaced by 
- * many require_once functions.
+ * This file includes the framework.
  */
 
 require_once 'src/core/InterfaceAuthDataSource.php';
@@ -13,10 +12,5 @@ require_once 'src/ui/AuthBox.php';
 require_once 'src/ui/InterfaceLoginElements.php';
 require_once 'src/ui/LoginElements.php';
 
-
-/*function __autoload($className) 
-{
-	require_once $className.'.php';
-}*/
 
 ?>

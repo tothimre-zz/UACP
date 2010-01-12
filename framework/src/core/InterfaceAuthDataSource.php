@@ -42,7 +42,6 @@ interface InterfaceAuthDataSource
 	 * 
 	 */
     public function flushAuthenticatedData();
-    
-    
+       
 }
 ?>

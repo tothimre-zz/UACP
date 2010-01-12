@@ -51,7 +51,7 @@ interface InterfaceLoginElements{
 	public function getUserString();
 
     
-	/*
+	/**
 	 * Returns a html form input tag that could represent an input field for 
 	 * the name of the user.
 	 * There are predefinied fields as name, class, id for future developement
@@ -61,16 +61,9 @@ interface InterfaceLoginElements{
 	public function getInputUser();
 
     
-	/*
+	/**
 	 * Returns a html form input tag that could represent an imput field for 
 	 * the password of the user.
-	 * 
-	 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	 * It is really important thing to know, that some part of the system 
-	 * pretends (AuthBox) if you use this method's return value in the it's 
-	 * returning value, that you are useing the log in form, if not, than you 
-	 * are using the log out form. 
-	 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	 * 
 	 * There are predefinied fields as name, class, id for future developement
 	 * and easier css formatting.
@@ -79,7 +72,7 @@ interface InterfaceLoginElements{
 	public function getInputPassword();
 
 
-	/*
+	/**
 	 * Returns a html form input tag that could represent an input field for 
 	 * a submit button that can send the user data if it is encapsulated in 
 	 * a html form. There are predefinied fields as name, class, id for future developement
