@@ -2,7 +2,6 @@ This is the root directory of the UACP that stands for
 Universal Authentication For PHP.
 
 
-
 Welcome to the UACP!
 
 Uacp stands for Universal Auhthetication component For PHP(5)
@@ -12,18 +11,20 @@ component for PHP applications.
 
 The guiding principles of the project are:
 
-|-Uses only the OOP paradigm, and PHP5.
-|-Well documented, and self documentative.
-|-Easy to reuse.
-|-Database independent.
-|-No external dependencies.
-|-Fully unittested.
-|-This framework supports iterative development, and because of this it is 
-| agile-friendly, So you can easily createh authenticatin related prototypes 
-| with the help of this framework.
+|------------------------------------------------------------------------------|
+|-Uses only the OOP paradigm, and PHP5.                                        |
+|-Well documented, and self documentative.                                     |
+|-Easy to reuse.                                                               |
+|-Database independent.                                                        |
+|-No external dependencies.                                                    |
+|-Fully unittested.                                                            |
+|-This framework supports iterative development, and because of this it is     |
+| agile style developement friendly. You can easily create authentication      |
+| related prototypes                                                           |
+|-Fits into the MVC Designpattern.                                             |
+|------------------------------------------------------------------------------|
 
-===============================================================================
-
+================================================================================
 
 The directory structure you see:
 
@@ -34,6 +35,7 @@ The directory structure you see:
 ./lib ; 
 	The libraries needed to run the framework, and the showcase.
 	(currently there is no dependencies.)
+    
 ./showcase; 
 	Here are (recenty only one) the examples to make it look delicious:)
 	Just copy the framework to your webserver that uses php5, browse the 
@@ -42,3 +44,21 @@ The directory structure you see:
 	the application should roun on any compatible configurations, but of 
 	course I will improove the compatibility list more specific in the near
 	future.
+   
+   
+   
+   Copyright [2010] [Imre Toth <tothimre at gmail>]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+   
+    
