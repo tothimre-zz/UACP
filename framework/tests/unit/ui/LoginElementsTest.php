@@ -14,7 +14,7 @@
    limitations under the License.
    */
 
-require_once 'tests/UacpMockFactoryTestCase.php';
+require_once 'tests/unit/UacpMockFactoryTestCase.php';
 
 class LoginElementsTest extends UacpMockFactoryTestCase
 {

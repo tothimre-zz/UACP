@@ -1,0 +1,30 @@
+This directory structure contains the functional and unittests
+
+If you wish to contribute to this project, please make your own tests too and
+be shoure, that all tests are running correctly after extending the sources.
+
+The tests depend on phpunit 3.4.6. It is the best if you install it 
+following by the intructions from here:
+http://www.phpunit.de/manual/current/en/installation.html
+
+The directory structure:
+
+functional
+	This files tests wether the showcase runs correctly in a browser or not.
+	
+	The tests are here depends on the selenium here you can find a start
+	documentation about it:
+	http://seleniumhq.org/projects/remote-control/
+	You can dowload it here:
+	http://seleniumhq.org/download/
+	You can start it that easy:
+	http://seleniumhq.org/docs/05_selenium_rc.html#installation
+	You have to arrange a in the setup.php file the basepath url of the 
+	showcase directory deployed. If you have firefox installed, after all just 
+	type in	"phpunit functional" from this directory if you wish to test the 
+	functionailty of the framework.
+	
+unit
+	The unittests belogs to this directory just type in from this directory: 
+	"phpunit unit" and the results should come. 
+	

@@ -24,6 +24,11 @@ The guiding principles of the project are:
 |-Fits into the MVC Designpattern.                                             |
 |------------------------------------------------------------------------------|
 
+INSTALLATION:
+Just copy the framework library anywhere where it is reachable from your 
+project and include the autoload.php file from it. You can use the examples to
+start your authentication module.
+
 ================================================================================
 
 The directory structure you see:
