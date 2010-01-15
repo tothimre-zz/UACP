@@ -12,16 +12,19 @@ component for PHP applications.
 The guiding principles of the project are:
 
 |------------------------------------------------------------------------------|
-|-Uses only the OOP paradigm, and PHP5.                                        
-|-Well documented, and self documentative.                                     
-|-Easy to reuse.                                                               
-|-Database independent.                                                        
-|-No external dependencies.                                                    
-|-Fully unittested.                                                            
-|-This framework supports iterative development, and because of this it is     
-| agile style developement friendly. You can easily create authentication      
-| related prototypes                                                           
-|-Fits into the MVC Designpattern.                                             
+|-Uses only the OOP paradigm, and PHP5.
+|-Well documented, and self documentative.
+|-Easy to reuse.
+|-Database independent.
+|-No external dependencies.
+|-Fully unittested.
+|-Functionally testes.
+|-Easy to learn by examples.
+|-This framework supports iterative development, and because of this it is
+| agile style developement friendly. You can easily create authentication
+| related prototypes.
+|-Fits into the MVC Designpattern.
+|-Apache 2 license
 |------------------------------------------------------------------------------|
 
 INSTALLATION:
