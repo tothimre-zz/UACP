@@ -31,7 +31,6 @@ interface InterfaceLoginElements{
 	 * authentication process at the current session.
 	 * 
 	 */
-//	private $Auth;
 	
 	/**
 	 * The descendants of this interface must have an Auth field that stores an 
@@ -44,38 +43,15 @@ interface InterfaceLoginElements{
 	 * 
 	 */
 	function __construct(InterfaceAuth $Auth); 
-	
-	/**
-	 * This function should give back the string representation of the user 
-	 * from the Auth field of the descendants because it depends on your 
-	 * implemetation kow how you store the user data.
-	 * 
-	 * @return Strig
-	 * 
-	 */
-	public function getUserStringFromAuth();
-    
- 	/**
-	 * This function should use uses the getUserStringFromAuth function
-	 * to get the String representation of the user and checks wether the user
-	 * is signed in or not. If not it gives back null value.
-	 * 
-	 * @return string, null
-	 * 
-	 */
-	public function getUserString();
 
-    
 	/**
-	 * Returns a html form input tag that could represent an input field for 
-	 * the name of the user.
-	 * There are predefinied fields as name, class, id for future developement
-	 * and easier css formatting.
+	 * Gives back the Auth field attached to the the descendants. 
+	 * (examine the Login Elements Class)
 	 * 
+	 * @return Auth
 	 */
-	public function getInputUser();
-
-    
+	public function getAuth();
+	    
 	/**
 	 * Returns a html form input tag that could represent an imput field for 
 	 * the password of the user.
@@ -86,6 +62,14 @@ interface InterfaceLoginElements{
 	 */
 	public function getInputPassword();
 
+	/**
+	 * Returns a html form input tag that could represent an input field for 
+	 * the name of the user.
+	 * There are predefinied fields as name, class, id for future developement
+	 * and easier css formatting.
+	 * 
+	 */
+	public function getInputUser();
 
 	/**
 	 * Returns a html form input tag that could represent an input field for 
@@ -95,13 +79,27 @@ interface InterfaceLoginElements{
 	 * 
 	 */
 	public function getSubmit();
-	
-	/**
-	 * Gives back the Auth field attached to the the descendants. 
-	 * (examine the Login Elements Class)
+		
+ 	/**
+	 * This function should use uses the getUserStringFromAuth function
+	 * to get the String representation of the user and checks wether the user
+	 * is signed in or not. If not it gives back null value.
 	 * 
-	 * @return Auth
+	 * @return string, null
+	 * 
 	 */
-	public function getAuth();
+	public function getUserString();
+    
+
+	/**
+	 * This function should give back the string representation of the user 
+	 * from the Auth field of the descendants because it depends on your 
+	 * implemetation kow how you store the user data.
+	 * 
+	 * @return Strig
+	 * 
+	 */
+	public function getUserStringFromAuth();
+	
 }
 ?>

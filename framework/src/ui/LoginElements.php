@@ -39,27 +39,19 @@ abstract class LoginElements implements InterfaceLoginElements{
 		$this->auth=$auth;
 	}
 	
-    
-	public function getUserString()
+	public function getAuth()
 	{
-		if ($this->auth->isLoggedIn())
-		{
-			return $this->getUserStringFromAuth();
-		}
-		else
-		{
-			return null;
-		}
-	}
-    
-	public function getInputUser()
-	{
-		return '<input type="text" name="uacp_user" class="uacp_user" id="uacp_user_id">';
-	}
+		return $this->auth;
+	}	
     
 	public function getInputPassword()
 	{   
 		return '<input type="password" name="uacp_pass" class="uacp_pass" id="uacp_pass_id">';
+	}
+	
+	public function getInputUser()
+	{
+		return '<input type="text" name="uacp_user" class="uacp_user" id="uacp_user_id">';
 	}
 
 	public function getSubmit()
@@ -77,9 +69,17 @@ abstract class LoginElements implements InterfaceLoginElements{
 		return '<input type="submit" name="uacp_submit" value="'.$value.'" class="uacp_submit" id="uacp_submit_id">';
 	}
 	
-	public function getAuth()
+	public function getUserString()
 	{
-		return $this->auth;
+		if ($this->auth->isLoggedIn())
+		{
+			return $this->getUserStringFromAuth();
+		}
+		else
+		{
+			return null;
+		}
 	}
+	
 }
 ?>

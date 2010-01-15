@@ -36,6 +36,11 @@ class MyAuthClass extends Auth
 		}
 	}
 	 
+	public  function flushAuthenticatedData()
+	{
+		session_unset();
+	}	
+	
 	public function getAuthenticatedData()
 	{
                 if(isset($_SESSION['UACP_USER_DATA']))
@@ -53,10 +58,6 @@ class MyAuthClass extends Auth
 		$_SESSION['UACP_USER_DATA']=$data;
 	}
 	 
-	public  function flushAuthenticatedData()
-	{
-		session_unset();
-	}
 }
 
 /**
