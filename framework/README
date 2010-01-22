@@ -6,6 +6,9 @@ The directory structure:
 doc
     Here you will find the generated api for the project.
 
+lib 
+	The libraries needed to run the framework, and the showcase.
+     
 src
     Here is the framework itself.
 

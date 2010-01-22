@@ -1,0 +1,8 @@
+The directory structure:
+
+auth
+	The most essencial part of the whole framework, it contains every 
+	functionality and abstraction regarding the authentication.
+
+templating
+	This classes are the foundations of the user interraction.

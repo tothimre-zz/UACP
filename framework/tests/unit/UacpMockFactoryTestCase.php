@@ -22,6 +22,7 @@ require_once 'autoload.php';
  */
 class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
 {
+
 	/**
 	 * This function gives back an instance of the MockAuthClass
 	 *
@@ -33,19 +34,21 @@ class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
 		return new MockAuthClass();
 	}
 	
-	public function getLoginElementsMock()
+	
+	public function getTemplateLogoutMock()
 	{
 		$AuthMock=$this->getAuthMock();
-		
 		$params[]=$AuthMock;
+		$params[]='{UsernameLabel}';
+		$params[]='foourl';
 		
-		$mockLoginElements = $this->getMockForAbstractClass('LoginElements',$params);
+		$mockTemplateLogout = $this->getMockForAbstractClass('TemplateLogout',$params);
 		
-		$mockLoginElements->expects($this->any())
-        	->method('getUserStringFromAuth')
+		$mockTemplateLogout->expects($this->any())
+        	->method('getUsernameLabel')
 			->will($this->returnValue('fooser'));
 			
-			return $mockLoginElements;
+			return $mockTemplateLogout;
 	}
 }
 

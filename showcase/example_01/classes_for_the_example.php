@@ -8,9 +8,10 @@ require '../../framework/autoload.php';
 /**
  * Implementing of getting the "String" value  of the user.
  */
-class myLoginElements extends LoginElements
+
+class MyTemplateLogout extends TemplateLogout
 {
-	public function getUserStringFromAuth()
+	public function getUsernameLabel()
 	{
 		return $_SESSION['UACP_USER_DATA'];
 	}
@@ -68,7 +69,6 @@ class MyAuthClass extends Auth
 class example_01 
 {
 	private $myAuthBox;
-	private $loginElements;
 	
 	/*
 	 * 
@@ -76,8 +76,9 @@ class example_01
 	function __construct()
 	{
 		$auth=new MyAuthClass();
-		$this->loginElements=new myLoginElements($auth);
-		$this->myAuthBox=new AuthBox($this->loginElements,'index.php');
+//		$myLogout=new MyTemplateLogout($auth,'','index.php');
+		$myLogout=new MyTemplateLogout($auth,'');
+		$this->myAuthBox=new AuthBoxSimple($myLogout);
 	}
 	
 	/*

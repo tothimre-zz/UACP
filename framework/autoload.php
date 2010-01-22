@@ -15,17 +15,24 @@
    */
 
 /**
- * This file includes the framework.
+ * This file includes the framework To your project
  */
 
-require_once 'src/core/InterfaceAuthDataSource.php';
-require_once 'src/core/InterfaceAuthProcess.php';
-require_once 'src/core/InterfaceAuth.php';
-require_once 'src/core/Auth.php';
+include 'env_config.php';
 
-require_once 'src/ui/AuthBox.php';
-require_once 'src/ui/InterfaceLoginElements.php';
-require_once 'src/ui/LoginElements.php';
+include 'src/core/auth/InterfaceAuthDataSource.php';
+include 'src/core/auth/InterfaceAuthProcess.php';
+include 'src/core/auth/InterfaceAuth.php';
+include 'src/core/auth/Auth.php';
 
+include 'src/core/templating/Template.php';
+include 'src/core/templating/TemplateLogin.php';
+include 'src/core/templating/TemplateLoginCaptcha.php';
+include 'src/core/templating/TemplateLogout.php';
+include 'src/core/templating/AuthTemplate.php';
+
+include 'src/ui/AuthBoxProto.php';
+include 'src/ui/AuthBoxFromTemplateFiles.php';
+include 'src/ui/AuthBoxSimple.php';
 
 ?>

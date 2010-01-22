@@ -1,7 +1,6 @@
 This is the root directory of the UACP that stands for 
 Universal Authentication For PHP.
 
-
 Welcome to the UACP!
 
 Uacp stands for Universal Auhthetication component For PHP(5)
@@ -12,17 +11,18 @@ component for PHP applications.
 The guiding principles of the project are:
 
 |------------------------------------------------------------------------------|
-|-Uses only the OOP paradigm, and PHP5.
 |-Well documented, and self documentative.
 |-Easy to reuse.
 |-Database independent.
+|-By its own really easy to learn templating system you can create fully 
+| customized designs for your authentication tasks.
 |-No external dependencies.
+|-Uses only the OOP paradigm, and PHP5.
 |-Fully unittested.
-|-Functionally testes.
+|-Functionally tested.
 |-Easy to learn by examples.
-|-This framework supports iterative development, and because of this it is
-| agile style developement friendly. You can easily create authentication
-| related prototypes.
+|-This framework supports iterative development it is agile developement 
+| friendly. You can easily create authentication related prototypes.
 |-Fits into the MVC Designpattern.
 |-Apache 2 license
 |------------------------------------------------------------------------------|
@@ -40,10 +40,6 @@ The directory structure you see:
 	Here is the little framework that helps for you to make your 
 	authentication flexible and easy.
 	
-./lib ; 
-	The libraries needed to run the framework, and the showcase.
-	(currently there is no dependencies.)
-    
 ./showcase; 
 	Here are (recenty only one) the examples to make it look delicious:)
 	Just copy the framework to your webserver that uses php5, browse the 
@@ -53,7 +49,8 @@ The directory structure you see:
 	course I will improove the compatibility list more specific in the near
 	future.
    
-   
+-------------------------------------------------------------------------------   
+COPYRIGHT:
    
    Copyright [2010] [Imre Toth <tothimre at gmail>]
 
@@ -68,5 +65,10 @@ The directory structure you see:
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   
-    
+-------------------------------------------------------------------------------
+    Securimage - A PHP class for creating and managing form CAPTCHA images.
+	Used for the capcha support. You can get it form http://www.phpcaptcha.org.
+	
+	Copyright (c) 2009 Drew Phillips. All rights reserved.
+    This software is released under the GNU Lesser General Public License.
+-------------------------------------------------------------------------------
