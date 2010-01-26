@@ -3,7 +3,7 @@
  * This file simly shows you how to implement 5 functions to get your full 
  * featured authentication module.
  */
-require '../../framework/autoload.php';
+require '../../../framework/autoload.php';
 
 /**
  * Implementing of getting the "String" value  of the user.

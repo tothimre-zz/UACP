@@ -1,19 +1,18 @@
 The directory structure:
 
 .settings .buildpath .project
-    Contain eclipse project information.
+	Contain eclipse project information.
 
 doc
-    Here you will find the generated api for the project.
+	Here you will find the generated api for the project.
 
 lib 
 	The libraries needed to run the framework, and the showcase.
-     
 src
-    Here is the framework itself.
+	Here is the framework itself.
 
 tests
-	The directory contains the unit and functional tests. if you wish to run 
+	The directory contains the unit and functional tests. If you wish to run 
 	the unittests you should type in "phpunit tests/unit" or functional tests
 	than "phpunit tests/functional" if both "phpunit tests" other instructions
-	and are in the tests/README.	    
+	and are in the tests/README.  

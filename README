@@ -21,7 +21,7 @@ The guiding principles of the project are:
 |-Fully unittested.
 |-Functionally tested.
 |-Easy to learn by examples.
-|-This framework supports iterative development it is agile developement 
+|-This framework supports iterative development and agile developement 
 | friendly. You can easily create authentication related prototypes.
 |-Fits into the MVC Designpattern.
 |-Apache 2 license
@@ -37,18 +37,19 @@ start your authentication module.
 The directory structure you see:
 
 ./framework ; 
-	Here is the little framework that helps for you to make your 
-	authentication flexible and easy.
+	Here is the little framework that helps you to make your authentication
+	flexible and easy. In the case you yust would to use the framework and
+	don't want to develop it you only need this folder.
 	
 ./showcase; 
 	Here are (recenty only one) the examples to make it look delicious:)
 	Just copy the framework to your webserver that uses php5, browse the 
-	showcase examples, they automatically starts, you can see how they
+	showcase examples, they automatically start, you can see how they
 	are working in practice. I use Ubuntu 9.10 with apache and php, so 
-	the application should roun on any compatible configurations, but of 
-	course I will improove the compatibility list more specific in the near
-	future.
-   
+	the application should run on any compatible configuration, but of 
+	course. I will test the component on other configurations as well 
+	in the near future.
+	
 -------------------------------------------------------------------------------   
 COPYRIGHT:
    
