@@ -1,4 +1,4 @@
-<?php 
+<?php
  /*Copyright 2010 Imre Toth <tothimre at gmail>
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,25 +18,25 @@
  * This class is the most convinient enduser implementation of the framework,
  * howewer you are boundled to it's structure. You can customise it easily with
  * yout css definitions.
- * 
+ *
  */
 class AuthBoxSimple extends AuthBoxFromTemplateFiles
 {
 
 	/**
 	 * The constructor expects a TemplateLogout instance because from this
-	 * all the other templates could got the needed information for the 
+	 * all the other templates could got the needed information for the
 	 * initialistation.
-	 * 
+	 *
 	 * @param TemplateLogout $templateLogout
-	 * 
+	 *
 	 */
-	function __construct(TemplateLogout $templateLogout) 
+	function __construct(TemplateLogout $templateLogout)
 	{
 		$this->setLoginTemplateFormFile('AuthBoxSimpleTemplates/login.tpl');
 		$this->setLogoutTemplateFromFile('AuthBoxSimpleTemplates/logout.tpl');
 		$this->setLoginCaptchaTemplateFromFile('AuthBoxSimpleTemplates/login_captcha.tpl');
-		
+
 		parent::__construct($templateLogout);
 	}
 }

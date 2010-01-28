@@ -1,7 +1,18 @@
+The examples are not independents, they strongly rely on the ../framework 
+directory and the structure if this directory. To show the component 
+capabilities I tried to make a clear structure for this sub-project.
+
+================================================================================
+The directory structure you see:
+
 .settings .project .buildpath
     Entries contains eclipse project informations and settings
 
-example_01
+examples
     contains a reference implementation of the auth box It uses $_SESSION 
-    enviroment variable to stre the login information without design, but a 
+    environment variable to start the login information without design, but a 
     later easily designed interface.
+
+lib
+	This directory stores Some own developed modules dor the showcase, and other
+	projects to make it help to be more impressive.

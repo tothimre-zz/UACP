@@ -19,21 +19,44 @@ require_once 'tests/unit/UacpMockFactoryTestCase.php';
 class AuthTemplateTest extends UacpMockFactoryTestCase
 {
 	public function testShow()
-	{   
+	{
 		$TemplateLogout=$this->getTemplateLogoutMock();
 		$auth=$TemplateLogout->getAuth();
-		
+
 		$TemplateLogin=new TemplateLogin('{UsernameInputString}{PasswordInputString}{HandlerUrl}','testurl');
 		$TemplateLoginCaptcha=new TemplateLoginCaptcha('{UsernameInputString}{PasswordInputString}{HandlerUrl}{CaptchaImage}{CaptchaImputString}','testurl');
-		
+
 		$loginBox=new AuthTemplate($TemplateLogout,$TemplateLogin,$TemplateLoginCaptcha);
-		
+		$sessionMock=$this->getMockSessionHandler();
+		$loginBox->setSessionhandler($sessionMock);
+		$sessionMock->session_start();
+
 		$login=$loginBox->show();
 		$auth->logIn('fooser','foopass');
 		$logout=$loginBox->show();
-		
+
 		$this->assertTrue($login!=$logout);
 		$this->assertTrue((strpos($logout,'fooser')!=false)||strpos($logout,'fooser')===0);
 	}
+
+	/**
+     * @expectedException Exception
+     */
+	public function testShowButNotSessionStarted(){
+
+		$TemplateLogout=$this->getTemplateLogoutMock();
+		$auth=$TemplateLogout->getAuth();
+
+		$TemplateLogin=new TemplateLogin('{UsernameInputString}{PasswordInputString}{HandlerUrl}','testurl');
+		$TemplateLoginCaptcha=new TemplateLoginCaptcha('{UsernameInputString}{PasswordInputString}{HandlerUrl}{CaptchaImage}{CaptchaImputString}','testurl');
+
+		$loginBox=new AuthTemplate($TemplateLogout,$TemplateLogin,$TemplateLoginCaptcha);
+		$sessionMock=$this->getMockSessionHandler();
+		$loginBox->setSessionhandler($sessionMock);
+
+		$login=$loginBox->show();
+
+	}
+
 }
 ?>

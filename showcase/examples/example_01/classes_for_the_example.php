@@ -1,6 +1,6 @@
 <?php
 /**
- * This file simly shows you how to implement 5 functions to get your full 
+ * This file simply shows you how to implement 5 functions to get your full 
  * featured authentication module.
  */
 require '../../../framework/autoload.php';
@@ -63,7 +63,7 @@ class MyAuthClass extends Auth
 
 /**
  * A reference class how to implement the Authbox class in an object 
- * complsition
+ * composition
  *
  */
 class example_01 

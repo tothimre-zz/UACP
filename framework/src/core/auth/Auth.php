@@ -15,18 +15,22 @@ limitations under the License.
 */
 
 /**
- * This abstract class models the default user log in scenario. It is useable
+ * This abstract class models the default user log in scenario. It is usable
  * in most possible cases. It implements the InterfaceAuthProcess interface
  * therefore if you want an Auth object you must implement the
  * InterfaceAuthDataSource interface;how to store, flush, and check
  * user information in your system.
- * It is a referenceimplmentation of the InterfaceAuth that is useable in most
+ * It is a reference implementation of the InterfaceAuth that is usable in most
  * cases, it it does not fits for your need fell free to implement the whole
  * Interface Auth for yourself and us yours, the framework is capable for this.
  *
  */
 abstract class Auth implements InterfaceAuth{
 
+	/**
+	 * (non-PHPdoc)
+	 * @see core/auth/InterfaceAuthProcess#getLoginData()
+	 */
 	public function getLoginData()
 	{
 		$authData=$this->getAuthenticatedData();
@@ -40,7 +44,10 @@ abstract class Auth implements InterfaceAuth{
 		}
 	}
 
-
+	/**
+	 * (non-PHPdoc)
+	 * @see core/auth/InterfaceAuthProcess#isLoggedIn()
+	 */
 	public function isLoggedIn()
 	{
 		if($this->getLoginData())
@@ -53,6 +60,10 @@ abstract class Auth implements InterfaceAuth{
 		}
 	}
 
+	/**
+	 * (non-PHPdoc)
+	 * @see core/auth/InterfaceAuthProcess#logIn($user, $pass)
+	 */
 	public function logIn($user,$pass)
 	{
 		$auth=$this->authenticate($user,$pass);
@@ -66,6 +77,10 @@ abstract class Auth implements InterfaceAuth{
 		}
 	}
 
+	/**
+	 * (non-PHPdoc)
+	 * @see core/auth/InterfaceAuthProcess#logOut()
+	 */
 	public function logOut()
 	{
 		$this->flushAuthenticatedData();

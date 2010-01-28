@@ -15,23 +15,25 @@
    */
 
 /**
- * I don't really prefel constants, but it is a case where I defined tem for 
- * the framework. It is a really convinient way for the usert to set up the
- * URL_OF_UACP constant It is an url where your framework resides it is really 
- * important for the captcha support, if you don't define it, the default valur is 
- * 'changeme' in this case if you use a capcha tempolate the framework throws 
+ * I don't really prefer constants, but it is a case where I defined them.
+ * It is a really convinient way for the usert to set up the URL_OF_UACP
+ * constant It is an url where your framework resides it is really
+ * important for the captcha support, if you don't define it, the default value is
+ * 'changeme' in this case if you use a capcha template the framework throws
  * exception.
- * If you have a site on 
- * http://www.xyz.com 
+ *
+ * Example:
+ * If you have a site on
+ * http://www.xyz.com
  * and the directory where you publicated the site
- * for instance contains a directory called 'libs' and you place it's UACP 
- * directory the framework, you should assign the 
- * http://ww.xyz.com/libs/UACP/framework 
+ * for instance contains a directory called 'libs' and you place it's UACP
+ * directory the framework, you should assign the
+ * http://ww.xyz.com/libs/UACP/framework
  * to the URL_OF_UACPconstant.
- * 
+ *
  */
 
-	define('URL_OF_UACP','http://localhost/UACP/framework/');
+//	define('URL_OF_UACP','http://localhost/UACP/framework/');
 	define('URL_OF_UACP_CHANGEME','changeme');
-//	define('URL_OF_UACP','changeme');
+	define('URL_OF_UACP',URL_OF_UACP_CHANGEME);
 ?>

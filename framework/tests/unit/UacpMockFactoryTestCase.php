@@ -24,47 +24,88 @@ class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
 {
 
 	/**
+	 *
+	 * @return PhpMockSessionHandler
+	 */
+	public function getMockSessionHandler(){
+		return new MockSessionHandler();
+	}
+
+	/**
 	 * This function gives back an instance of the MockAuthClass
 	 *
 	 * @return MockAuthClass
-	 * 
+	 *
 	 */
 	public function getAuthMock()
 	{
 		return new MockAuthClass();
 	}
-	
-	
+
+
 	public function getTemplateLogoutMock()
 	{
 		$AuthMock=$this->getAuthMock();
 		$params[]=$AuthMock;
 		$params[]='{UsernameLabel}';
 		$params[]='foourl';
-		
+
 		$mockTemplateLogout = $this->getMockForAbstractClass('TemplateLogout',$params);
-		
+
 		$mockTemplateLogout->expects($this->any())
         	->method('getUsernameLabel')
 			->will($this->returnValue('fooser'));
-			
+
 			return $mockTemplateLogout;
 	}
 }
 
 /**
- * This class is needed because you cannot simply use the 
- * getMockForAbstractClass to the initialisation, because the "enviroment"
- * is modelled in this particular class, it is easy to test.
+ * This is really important for the tests this little hack makes the
+ * php session Emulation in Phpunit possible.. of course just a little
+ * piece of it, only what the framework deserves.
+ *
+ */
+class MockSessionHandler implements PhpSessionHandlerInerface{
+
+	/**
+	 * This variable  represents the session ID.
+	 *
+	 * @var String
+	 */
+	private $sid=null;
+
+	/**
+	 * (non-PHPdoc)
+	 * @see core/templating/PhpSessionHandlerInerface#session_id()
+	 */
+	public function session_id(){
+		return $this->sid;
+	}
+
+
+	/**
+	 * (non-PHPdoc)
+	 * @see core/templating/PhpSessionHandlerInerface#session_start()
+	 */
+	public function session_start(){
+		echo'ZIZIZIZIZIZIZIZIZIZI';
+		$this->sid='1';
+	}
+}
+/**
+ * This class is needed because you cannot simply use the
+ * getMockForAbstractClass to the initialization, because the "environment"
+ * is modeled in this particular class, it is easy to test.
  *
  */
 class MockAuthClass extends Auth
 {
 
 	private $userInfo=null;
-	
+
 	public function authenticate($user, $pass)
-	
+
 	{
 		if($user=='fooser' && $pass=='foopass')
 		{
@@ -75,17 +116,17 @@ class MockAuthClass extends Auth
 			return null;
 		}
 	}
-	 
+
 	public function getAuthenticatedData()
 	{
 		return $this->userInfo;
 	}
-	 
+
 	public function storeAuthenticatedData($data)
 	{
 		$this->userInfo=$data;
 	}
-	 
+
 	public  function flushAuthenticatedData()
 	{
 		$this->storeAuthenticatedData(null);

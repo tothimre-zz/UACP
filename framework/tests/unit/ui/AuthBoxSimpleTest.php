@@ -19,18 +19,37 @@ require_once 'tests/unit/UacpMockFactoryTestCase.php';
 class AuthBoxSimpleTest extends UacpMockFactoryTestCase
 {
 	public function testShow()
-	{   
+	{
 		$logout=$this->getTemplateLogoutMock();
-				
+
 		$authBox=new AuthBoxSimple($logout);
-		
+
+		$sessionMock=$this->getMockSessionHandler();
+		$authBox->setSessionHandler($sessionMock);
+		$sessionMock->session_start();
+
 		$login=$authBox->show();
 		$logout->getAuth()->logIn('fooser','foopass');
 		$logout=$authBox->show();
 
 		$this->assertTrue($login!=$logout);
 		$this->assertTrue((strpos($logout,'fooser')!=false)||strpos($logout,'fooser')===0);
-			
+
+	}
+
+	/**
+     * @expectedException Exception
+     */
+	public function testShowButNotSessionStarted(){
+
+		$logout=$this->getTemplateLogoutMock();
+
+		$authBox=new AuthBoxSimple($logout);
+
+		$sessionMock=$this->getMockSessionHandler();
+		$authBox->setSessionHandler($sessionMock);
+
+		$login=$authBox->show();
 	}
 }
 ?>

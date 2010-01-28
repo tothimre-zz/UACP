@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.Frame;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ShowExample implements ShowcaseCommon{
@@ -30,10 +31,13 @@ public class ShowExample implements ShowcaseCommon{
 	public void add(final String loc){
 		
 		clearThigsToShow();
+		SimplePanel panel=new SimplePanel();
 		Frame fr  = new Frame();
-		thigsToShow.add(fr, "example");
+		panel.add(fr);
+		thigsToShow.add(panel, "example");
 		fr.setUrl(exampleBasePath+loc+"/index.php");
 		setWidgetsSizeOfThigsToShow();		
+		fr.setSize("100%", "100%");
 		thigsToShow.selectTab(0);
 
 		
@@ -49,7 +53,9 @@ public class ShowExample implements ShowcaseCommon{
 						JSONObject jso= jsonValue.isObject();
 						Iterator<String>iter=jso.keySet().iterator();
 						while(iter.hasNext()){
-							addToPanel(loc,jso.get(iter.next()).isString().stringValue());
+							ScrollPanel panel=new ScrollPanel();
+							thigsToShow.add(panel, "Downloading....");
+							ajaxToPanel(panel,loc,jso.get(iter.next()).isString().stringValue());
 						}
 					}
 				}
@@ -90,18 +96,18 @@ public class ShowExample implements ShowcaseCommon{
 		thigsToShow.clear();
 	}
 	
-void addToPanel(String location,final String nameOfFile){
+void ajaxToPanel(final ScrollPanel panel,String location,final String nameOfFile){
 		
 		RequestBuilder rb = new RequestBuilder(RequestBuilder.GET, toolsBasePath+"showfile.php?file="+location+"/"+nameOfFile);
 		
 		rb.setCallback(new RequestCallback(){
 
 			public void onResponseReceived(Request request, Response response) {
-				ScrollPanel simplePanel= new ScrollPanel();
-				thigsToShow.add(simplePanel,nameOfFile);
-				setWidgetsSizeOfThigsToShow();
+				thigsToShow.add(panel,nameOfFile);
 				HTML html=new HTML(response.getText());
-				simplePanel.add(html);
+				panel.add(html);
+				
+				setWidgetsSizeOfThigsToShow();
 			}
 			
 			public void onError(Request request, Throwable exception) {

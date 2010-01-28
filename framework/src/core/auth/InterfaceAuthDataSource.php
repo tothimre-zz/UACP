@@ -16,13 +16,13 @@ limitations under the License.
 
 /**
  * This interface Is the most important thing to understand in the system
- * The core abstraction that makes it reuseable is hidden below
+ * The core abstraction that makes it reusable is hidden below
  */
 interface InterfaceAuthDataSource
 {
 	/**
-	 * This function represents the authetnication, it needs a username and
-	 * a password. You are free to stool this funtion to your needs.
+	 * This function represents the authentication, it needs a user name and
+	 * a password. You are free to stool this function to your needs.
 	 *
 	 * @param String $name
 	 * @param String $pass
@@ -32,19 +32,20 @@ interface InterfaceAuthDataSource
 
 	/**
 	 * Flushes the authentication data. It depends on your implementation how
-	 * implement it, or example if you store in the Session a lot of things not
-	 * only the user information, maybe yo cen flush the whole session.
+	 * implement it, or example for instance store in the Session a lot of
+	 * things not only the user information, maybe you can flush the whole
+	 * session.
 	 *
 	 */
 	public function flushAuthenticatedData();
-	
+
 	/**
 	 * Gives back any kind of data if the user is authenticated, else nothing.
-	 * it depends on your implemetation how and what you store here. It is
-	 * recommended to store user releated data here, or something that is
-	 * releated to that, but feel free to make it work the way that serves
+	 * it depends on your implementation how and what you store here. It is
+	 * recommended to store user related data here, or something that is
+	 * related to that, but feel free to make it work the way that serves
 	 * better your purposes.
-	  
+
 	 * @return mixed
 	 *
 	 */
@@ -58,6 +59,6 @@ interface InterfaceAuthDataSource
 	 */
 	public function storeAuthenticatedData($data);
 
-	 
+
 }
 ?>

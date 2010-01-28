@@ -3,13 +3,15 @@ Universal Authentication For PHP.
 
 Welcome to the UACP!
 
-Uacp stands for Universal Auhthetication component For PHP(5)
+Uacp stands for Universal Authentication component For PHP(5)
 
 The aim of this project is to create an easy to (re)use authentication 
 component for PHP applications.
 
-The guiding principles of the project are:
+You can see how it works at:
+http://uacp.x10hosting.com/showcase/lib/tools/gwt/uacp_showcase/war/Uacp_showcase.html
 
+The guiding principles of the project are:
 |------------------------------------------------------------------------------|
 |-Well documented, and self documentative.
 |-Easy to reuse.
@@ -21,7 +23,7 @@ The guiding principles of the project are:
 |-Fully unittested.
 |-Functionally tested.
 |-Easy to learn by examples.
-|-This framework supports iterative development and agile developement 
+|-This framework supports iterative development and agile development 
 | friendly. You can easily create authentication related prototypes.
 |-Fits into the MVC Designpattern.
 |-Apache 2 license
@@ -29,11 +31,13 @@ The guiding principles of the project are:
 
 INSTALLATION:
 Just copy the framework library anywhere where it is reachable from your 
-project and include the autoload.php file from it. You can use the examples to
-start your authentication module.
+project and include the autoload.php file from it, modify one line if you would
+like to use the Captcha support in this case your environment sould have session
+support.
+
+You can use the examples to start your authentication module.
 
 ================================================================================
-
 The directory structure you see:
 
 ./framework ; 
@@ -42,7 +46,7 @@ The directory structure you see:
 	don't want to develop it you only need this folder.
 	
 ./showcase; 
-	Here are (recenty only one) the examples to make it look delicious:)
+	Here are (recently only one) the examples to make it look delicious:)
 	Just copy the framework to your webserver that uses php5, browse the 
 	showcase examples, they automatically start, you can see how they
 	are working in practice. I use Ubuntu 9.10 with apache and php, so 
@@ -73,3 +77,28 @@ COPYRIGHT:
 	Copyright (c) 2009 Drew Phillips. All rights reserved.
     This software is released under the GNU Lesser General Public License.
 -------------------------------------------------------------------------------
+	GeSHi - Generic Syntax Highlighter
+
+	The GeSHi class for Generic Syntax Highlighting. Please refer to the
+	documentation at http://qbnz.com/highlighter/documentation.php for more
+	information about how to use this class.
+
+	For changes, release notes, TODOs etc, see the relevant files in the docs/
+	directory.
+
+	This file is part of GeSHi.
+
+	GeSHi is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+
+	GeSHi is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with GeSHi; if not, write to the Free Software
+	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+--------------------------------------------------------------------------------

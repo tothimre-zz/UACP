@@ -1,0 +1,12 @@
+================================================================================
+The directory structure you see:
+
+geshi
+	contains the General Syntax Highlighter project. hit can highlight various
+	source files.
+
+tools
+	Own developed part of the framework. A few php scripts for the ajax 
+	communication, and a GWT based javascript dashboard to learn the usage of 
+	the tool. The GWT compiled only in the snapshots and the releases. So you 
+	can get it from the download section.
