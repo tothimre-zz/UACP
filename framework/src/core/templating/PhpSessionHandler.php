@@ -24,5 +24,21 @@ class PhpSessionHandler implements PhpSessionHandlerInerface{
 	public function session_start(){
 		session_start();
 	}
+
+	/**
+	 * (non-PHPdoc)
+	 * @see core/templating/PhpSessionHandlerInerface#setValue($index, $value)
+	 */
+	public function setValue($index,$value){
+		$_SESSION[$index]=$value;
+	}
+
+	/**
+	 * (non-PHPdoc)
+	 * @see core/templating/PhpSessionHandlerInerface#getValue($index)
+	 */
+	public function getValue($index){
+		return $_SESSION[$index];
+	}
 }
 ?>

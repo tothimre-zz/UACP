@@ -24,9 +24,21 @@ interface InterfaceAuthDataSource
 	 * This function represents the authentication, it needs a user name and
 	 * a password. You are free to stool this function to your needs.
 	 *
-	 * @param String $name
-	 * @param String $pass
+	 * For example if you would authenticate against an AD domain or just simply
+	 * a database you can do it here.
 	 *
+	 * @param String $name
+	 * The identifier of the user.
+	 *
+	 * @param String $pass
+	 * The password of the user
+	 *
+	 * @return mixed
+	 * This is an important part of the concept if you wish can only give back
+	 * a string that describes the user or just gives back the first parameter
+	 * of this function. You can give more detailed information about the user
+	 * if you would show more information on various parts of your application
+	 * about it it is your choice so feel free to store what you want.
 	 */
 	public function authenticate($name, $pass);
 
@@ -35,6 +47,8 @@ interface InterfaceAuthDataSource
 	 * implement it, or example for instance store in the Session a lot of
 	 * things not only the user information, maybe you can flush the whole
 	 * session.
+	 *
+	 * @return none
 	 *
 	 */
 	public function flushAuthenticatedData();
@@ -55,7 +69,7 @@ interface InterfaceAuthDataSource
 	 * Stores the authentication results if succeeded.
 	 *
 	 * @param String $data
-	 *
+	 * @return none
 	 */
 	public function storeAuthenticatedData($data);
 

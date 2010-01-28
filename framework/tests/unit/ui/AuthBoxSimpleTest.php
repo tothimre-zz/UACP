@@ -25,6 +25,10 @@ class AuthBoxSimpleTest extends UacpMockFactoryTestCase
 		$authBox=new AuthBoxSimple($logout);
 
 		$sessionMock=$this->getMockSessionHandler();
+		/*
+		 * This is a must have line if you would test this function because
+		 * the captcha support relies on the session support of the php
+		 */
 		$authBox->setSessionHandler($sessionMock);
 		$sessionMock->session_start();
 

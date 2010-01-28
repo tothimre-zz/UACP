@@ -24,6 +24,8 @@ class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
 {
 
 	/**
+	 * This is important because the phpunit cannot handle such built in
+	 * globally accessible variables like  $_SESSION.
 	 *
 	 * @return PhpMockSessionHandler
 	 */
@@ -75,6 +77,8 @@ class MockSessionHandler implements PhpSessionHandlerInerface{
 	 */
 	private $sid=null;
 
+	private $session;
+
 	/**
 	 * (non-PHPdoc)
 	 * @see core/templating/PhpSessionHandlerInerface#session_id()
@@ -89,9 +93,21 @@ class MockSessionHandler implements PhpSessionHandlerInerface{
 	 * @see core/templating/PhpSessionHandlerInerface#session_start()
 	 */
 	public function session_start(){
-		echo'ZIZIZIZIZIZIZIZIZIZI';
 		$this->sid='1';
 	}
+
+		public function setValue($index,$value){
+		$session[$index]=$value;
+	}
+
+	/**
+	 * (non-PHPdoc)
+	 * @see core/templating/PhpSessionHandlerInerface#getValue($index)
+	 */
+	public function getValue($index){
+		return $session[$index];
+	}
+
 }
 /**
  * This class is needed because you cannot simply use the

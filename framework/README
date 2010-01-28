@@ -1,7 +1,6 @@
-The directory structure:
+================================================================================
+The directory structure you see:
 
-.settings .buildpath .project
-	Contain eclipse project information.
 
 doc
 	Here you will find the generated api for the project.
@@ -15,4 +14,20 @@ tests
 	The directory contains the unit and functional tests. If you wish to run 
 	the unittests you should type in "phpunit tests/unit" or functional tests
 	than "phpunit tests/functional" if both "phpunit tests" other instructions
-	and are in the tests/README.  
+	and are in the tests/README. 
+
+.settings .buildpath .project
+	Contain eclipse project information.
+
+
+autload.php
+	If you would use the framework you should include this file into your 
+	application.
+	
+env_config.php
+	contains some constant values if you would use the captcha support built in
+	you must redefine the URL_OF_UACP constant that resides here, otherwise the
+	application will throw an exception. 
+	
+README
+	This file itself. 

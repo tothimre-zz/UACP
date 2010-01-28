@@ -82,7 +82,9 @@ class example_01
 	}
 	
 	/*
-	 * A simple wrapper for the $this->myAuthBox->show() function
+	 * A simple wrapper for the $this->myAuthBox->show() function. The only 
+	 * differene is that this function not gives back it's contents but prints
+	 * that.
 	 */
 	function show()
 	{
