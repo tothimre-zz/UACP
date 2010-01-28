@@ -18,32 +18,39 @@ import com.google.gwt.user.client.ui.Frame;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ShowExample implements ShowcaseCommon{
 	
 	static DecoratedTabPanel thigsToShow= new DecoratedTabPanel();
+	String selectedLocation=null;
 	
 	public ShowExample(){
 		thigsToShow.setAnimationEnabled(true);
 	}
 	
-	public void add(final String loc){
+	public void add(final String location){
 		
-		clearThigsToShow();
-		SimplePanel panel=new SimplePanel();
-		Frame fr  = new Frame();
-		panel.add(fr);
-		thigsToShow.add(panel, "example");
-		fr.setUrl(exampleBasePath+loc+"/index.php");
-		setWidgetsSizeOfThigsToShow();		
-		fr.setSize("100%", "100%");
-		thigsToShow.selectTab(0);
+		if(this.selectedLocation==null
+				||
+			!location.equals(this.selectedLocation))
+		{
+			this.selectedLocation=location;
+			clearThigsToShow();
+			SimplePanel panel=new SimplePanel();
+			Frame fr  = new Frame();
+			panel.add(fr);
+			thigsToShow.add(panel, "example");
+			fr.setUrl(exampleBasePath+location+"/index.php");
+			setWidgetsSizeOfThigsToShow();		
+			fr.setSize("100%", "100%");
+			thigsToShow.selectTab(0);
 
 		
 		RequestBuilder rb = new RequestBuilder(RequestBuilder.GET, 
 											   toolsBasePath+
-											   "listdir.php?files=1&path="+loc);
+											   "listdir.php?files=1&path="+location);
 		rb.setCallback(new RequestCallback() {
 				
 				public void onResponseReceived(Request request, Response response) {
@@ -55,7 +62,7 @@ public class ShowExample implements ShowcaseCommon{
 						while(iter.hasNext()){
 							ScrollPanel panel=new ScrollPanel();
 							thigsToShow.add(panel, "Downloading....");
-							ajaxToPanel(panel,loc,jso.get(iter.next()).isString().stringValue());
+							ajaxToPanel(panel,location,jso.get(iter.next()).isString().stringValue());
 						}
 					}
 				}
@@ -65,12 +72,12 @@ public class ShowExample implements ShowcaseCommon{
 				}
 			});	
 		
-		try {
-			rb.send();
-		} catch (RequestException e) {
-			e.printStackTrace();
+			try {
+				rb.send();
+			} catch (RequestException e) {
+				e.printStackTrace();
+			}
 		}
-		
 		
 		Window.addResizeHandler(new ResizeHandler() {	
 			public void onResize(ResizeEvent event) {

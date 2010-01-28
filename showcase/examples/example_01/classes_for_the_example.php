@@ -1,6 +1,6 @@
 <?php
 /**
- * This file simply shows you how to implement 5 functions to get your full 
+ * This file simply shows you how to implement 5 functions to get your full
  * featured authentication module.
  */
 require '../../../framework/autoload.php';
@@ -23,9 +23,9 @@ class MyTemplateLogout extends TemplateLogout
  */
 class MyAuthClass extends Auth
 {
-	
+
 	public function authenticate($user, $pass)
-	
+
 	{
 		if($user=='fooser' && $pass=='foopass')
 		{
@@ -36,12 +36,12 @@ class MyAuthClass extends Auth
 			return null;
 		}
 	}
-	 
+
 	public  function flushAuthenticatedData()
 	{
 		session_unset();
-	}	
-	
+	}
+
 	public function getAuthenticatedData()
 	{
                 if(isset($_SESSION['UACP_USER_DATA']))
@@ -53,43 +53,42 @@ class MyAuthClass extends Auth
                   return null;
                 }
 	}
-	 
+
 	public function storeAuthenticatedData($data)
 	{
 		$_SESSION['UACP_USER_DATA']=$data;
 	}
-	 
+
 }
 
 /**
- * A reference class how to implement the Authbox class in an object 
+ * A reference class how to implement the Authbox class in an object
  * composition
  *
  */
-class example_01 
+class example_01
 {
 	private $myAuthBox;
-	
+
 	/*
-	 * 
+	 *
 	 */
 	function __construct()
 	{
 		$auth=new MyAuthClass();
-//		$myLogout=new MyTemplateLogout($auth,'','index.php');
-		$myLogout=new MyTemplateLogout($auth,'');
+		$myLogout=new MyTemplateLogout($auth);
 		$this->myAuthBox=new AuthBoxSimple($myLogout);
 	}
-	
+
 	/*
-	 * A simple wrapper for the $this->myAuthBox->show() function. The only 
-	 * differene is that this function not gives back it's contents but prints
+	 * A simple wrapper for the $this->myAuthBox->show() function. The only
+	 * difference is that this function not gives back it's contents but prints
 	 * that.
 	 */
 	function show()
 	{
 		echo $this->myAuthBox->show();
 	}
-	
+
 }
 ?>
