@@ -25,17 +25,18 @@ class AuthTest extends UacpMockFactoryTestCase
 		//Testing with wrong userdata.
 		$authMock->logIn('foother','');
 		$this->assertEquals($authMock->getLoginData(), null);
-		 
+
 		//Testing with valid user.
 		$authMock->logIn('fooser','foopass');
 		$this->assertFalse($authMock->getLoginData()==null);
-		 
-		//Once aggin with wrong userdata to check if the flush works as it should.
+
+		//Once aggin with wrong userdata to check if the removal of the user
+		//data works as it should.
 		$authMock->logIn('foother','');
 		$this->assertEquals($authMock->getLoginData(), null);
-		
+
 		$authMock->logOut();
-		
+
 		return $authMock;
 	}
 
@@ -48,17 +49,17 @@ class AuthTest extends UacpMockFactoryTestCase
 		//Testing with wrong userdata.
 		$authMock->logIn('foother','');
 		$this->assertEquals($authMock->isLoggedIn(), null);
-		 
+
 		//Testing with valid user.
 		$authMock->logIn('fooser','foopass');
 		$this->assertFalse($authMock->isLoggedIn()==null);
-		 
+
 		//Once aggin with wrong userdata to check if the flush works as it should.
 		$authMock->logIn('foother','');
 		$this->assertEquals($authMock->isLoggedIn(), null);
-		
+
 		return $authMock;
-		 
+
 	}
 
 	/**
@@ -70,7 +71,7 @@ class AuthTest extends UacpMockFactoryTestCase
 		$this->assertTrue($authMock->isLoggedIn()==null);
 		return $authMock;
 	}
-	
+
 	/**
 	 * @depends testLogIn
 	 *

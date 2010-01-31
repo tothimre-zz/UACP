@@ -43,17 +43,6 @@ interface InterfaceAuthDataSource
 	public function authenticate($name, $pass);
 
 	/**
-	 * Flushes the authentication data. It depends on your implementation how
-	 * implement it, or example for instance store in the Session a lot of
-	 * things not only the user information, maybe you can flush the whole
-	 * session.
-	 *
-	 * @return none
-	 *
-	 */
-	public function flushAuthenticatedData();
-
-	/**
 	 * Gives back any kind of data if the user is authenticated, else nothing.
 	 * it depends on your implementation how and what you store here. It is
 	 * recommended to store user related data here, or something that is

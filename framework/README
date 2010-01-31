@@ -16,10 +16,6 @@ tests
 	than "phpunit tests/functional" if both "phpunit tests" other instructions
 	and are in the tests/README. 
 
-.settings .buildpath .project
-	Contain eclipse project information.
-
-
 autload.php
 	If you would use the framework you should include this file into your 
 	application.

@@ -5,9 +5,6 @@ capabilities I tried to make a clear structure for this sub-project.
 ================================================================================
 The directory structure you see:
 
-.settings .project .buildpath
-    Entries contains eclipse project informations and settings
-
 examples
     contains a reference implementation of the auth box It uses $_SESSION 
     environment variable to start the login information without design, but a 

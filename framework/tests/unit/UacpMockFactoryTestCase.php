@@ -23,6 +23,12 @@ require_once 'autoload.php';
 class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
 {
 
+	
+	public function getMockPostHandler($user,$pass){
+		return new MockPostHandler($user,$pass);
+	}
+	
+	
 	/**
 	 * This is important because the phpunit cannot handle such built in
 	 * globally accessible variables like  $_SESSION.
@@ -58,7 +64,7 @@ class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
         	->method('getUsernameLabel')
 			->will($this->returnValue('fooser'));
 
-			return $mockTemplateLogout;
+		return $mockTemplateLogout;
 	}
 }
 
@@ -68,21 +74,22 @@ class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
  * piece of it, only what the framework deserves.
  *
  */
-class MockSessionHandler implements PhpSessionHandlerInerface{
-
+class MockSessionHandler implements SessionHandlerInterface{
+	
 	/**
 	 * This variable  represents the session ID.
 	 *
-	 * @var String
+	 * @var string
 	 */
 	private $sid=null;
 
+	/**
+	 * This variable  represents the session.
+	 *
+	 * @var string
+	 */
 	private $session;
 
-	/**
-	 * (non-PHPdoc)
-	 * @see core/templating/PhpSessionHandlerInerface#session_id()
-	 */
 	public function session_id(){
 		return $this->sid;
 	}
@@ -97,7 +104,7 @@ class MockSessionHandler implements PhpSessionHandlerInerface{
 	}
 
 		public function setValue($index,$value){
-		$session[$index]=$value;
+		$this->session[$index]=$value;
 	}
 
 	/**
@@ -105,7 +112,14 @@ class MockSessionHandler implements PhpSessionHandlerInerface{
 	 * @see core/templating/PhpSessionHandlerInerface#getValue($index)
 	 */
 	public function getValue($index){
-		return $session[$index];
+
+		if(isset($this->session[$index])){
+			return $this->session[$index];
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 }
@@ -117,7 +131,6 @@ class MockSessionHandler implements PhpSessionHandlerInerface{
  */
 class MockAuthClass extends Auth
 {
-
 	private $userInfo=null;
 
 	public function authenticate($user, $pass)
@@ -142,10 +155,29 @@ class MockAuthClass extends Auth
 	{
 		$this->userInfo=$data;
 	}
+}
 
-	public  function flushAuthenticatedData()
-	{
-		$this->storeAuthenticatedData(null);
+class MockPostHandler implements GlobalHandlerInterface{
+
+	public $test=true;
+	private $post;
+	function __construct($user,$pass){
+		$this->setValue('uacp_user',$user);
+		$this->setValue('uacp_pass',$pass);
+	}
+	
+		
+	public function setValue($index,$value){
+		$this->post[$index]=$value;
+	}
+
+	public function getValue($index){
+		if(isset($this->post[$index])){
+			return $this->post[$index];
+		}
+		else{
+			return null;
+		}
 	}
 }
 ?>

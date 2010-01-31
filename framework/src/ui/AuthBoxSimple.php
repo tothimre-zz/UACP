@@ -15,9 +15,9 @@
    */
 
 /**
- * This class is the most convinient enduser implementation of the framework,
- * howewer you are boundled to it's structure. You can customise it easily with
- * yout css definitions.
+ * This class is the most convenient end user implementation of the framework,
+ * however you are bounded to it's structure. You can customize it easily with
+ * your css definitions.
  *
  */
 class AuthBoxSimple extends AuthBoxFromTemplateFiles
@@ -26,7 +26,7 @@ class AuthBoxSimple extends AuthBoxFromTemplateFiles
 	/**
 	 * The constructor expects a TemplateLogout instance because from this
 	 * all the other templates could got the needed information for the
-	 * initialistation.
+	 * initialization.
 	 *
 	 * @param TemplateLogout $templateLogout
 	 *

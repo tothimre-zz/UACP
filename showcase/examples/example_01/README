@@ -2,7 +2,7 @@ This Example is a start point to the UACP framework. This example uses the
 built in default template of this package. The Auth object is configured like 
 this:
 	Username:fooser
-	Password:pass
+	Password:foopass
 	
 If you reload or fail the login three times the captcha authentication is 
 required to pass the authentication process.

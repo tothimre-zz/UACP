@@ -57,9 +57,7 @@ class AuthTemplateTest extends UacpMockFactoryTestCase
 		$loginBox->show();
 		$loginBox->show();
 		$logincaptcha=$loginBox->show();
-		
-		echo $logincaptcha;
-		
+s		
 		$this->assertTrue($login!=$logout);
 		$this->assertTrue($login!=$logincaptcha);
 		$this->assertTrue((strpos($logout,'fooser')!=false)||strpos($logout,'fooser')===0);

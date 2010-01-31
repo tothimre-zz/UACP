@@ -73,7 +73,7 @@ abstract class Auth implements InterfaceAuth{
 		}
 		else
 		{
-			$this->flushAuthenticatedData();
+			$this->logOut();
 		}
 	}
 
@@ -83,7 +83,7 @@ abstract class Auth implements InterfaceAuth{
 	 */
 	public function logOut()
 	{
-		$this->flushAuthenticatedData();
+		$this->storeAuthenticatedData(null);
 	}
 }
 ?>

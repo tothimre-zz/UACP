@@ -22,10 +22,11 @@
 class AuthTemplate
 {
 	private $logIn=null;
-	private $logOut=null;
+	public $logOut=null;
 	private $logInCaptcha=null;
 	private $beforeCaptcha=null;
 	private $sessionHandler=null;
+	private $userDataHandler=null;
 
 	/**
 	 *
@@ -50,108 +51,119 @@ class AuthTemplate
 		$this->logInCaptcha=$logInCaptcha;
 		$this->beforeCaptcha=$beforeCaptcha;
 		$this->setSessionhandler(new PhpSessionHandler());
+		$this->setUserDataHandler(new PhpPostHandler());
 	}
 
 
 	/**
-	 * This function returns with the value of the $_POST environment variable if
-	 * it is not null.
+	 * Handles values form the authentication form.
 	 *
-	 * @return array or null;
+	 * @return String
 	 */
-	private function getParams()
+	private function handleUserValues()
 	{
-		$params=null;
-		if(isset($_POST))
-			if(!empty($_POST))
-			{
-				$params=$_POST;
-			}
-		return $params;
-	}
 
-	/**
-	 * Handles the submitted values
-	 */
-	private function handleForm()
-	{
-		$params=$this->getParams();
-		if ($params)
+		if($this->logOut->getAuth()->isLoggedIn()
+			&&
+			!$this->userDataHandler->getValue('uacp_user')
+			&&
+			!$this->userDataHandler->getValue('uacp_pass')
+			&&
+			$this->userDataHandler->getValue('uacp_submit')
+			
+			)
 		{
-			if($this->logOut->getAuth()->isLoggedIn())
-			{
-					$this->logOut->getAuth()->logOut();
+			$this->sessionHandler->setValue('uacp_login_cnt',0);
+			$this->logOut->getAuth()->logOut();
+		}
+		else
+		{
+			$user;$pass;
+			if($this->userDataHandler->getValue('uacp_user')){
+				$user=$this->userDataHandler->getValue('uacp_user');
 			}
-			else
-			{
-				$user;$pass;
-				if(isset($params['uacp_user'])){
-					$user=$params['uacp_user'];
-				}
 
-				if(isset($params['uacp_pass'])){
-					$pass=$params['uacp_pass'];
-				}
-				if(!empty($user)&&!empty($pass)){
+			if($this->userDataHandler->getValue('uacp_pass')){
+				$pass=$this->userDataHandler->getValue('uacp_pass');
+			}
+			if(!empty($user)&&!empty($pass)){
 
-					if($_SESSION['uacp_login_cnt']<=$this->beforeCaptcha){
+				if($this->sessionHandler->getValue('uacp_login_cnt')<=$this->beforeCaptcha-1){
 					$this->logOut->getAuth()->logIn($user,$pass);
-					}else{
+				}else{
+					//this little hacking is for the unittests.
+					if(!isset($this->userDataHandler->test)){
 						$image = new Securimage();
-					    if ($image->check($_POST['captcha_code']) == true) {
-					      $this->logOut->getAuth()->logIn($user,$pass);
-					    }
+						if ($image->check($this->userDataHandler->getValue('captcha_code')) == true) {
+						  $this->logOut->getAuth()->logIn($user,$pass);
+						}						
 					}
 				}
 			}
 		}
 	}
 
-	public function setSessionhandler(PhpSessionHandlerInerface $sessionHandler){
+	/**
+	 * Sets the session handler interface.
+	 *
+	 * @param PhpSessionHandlerInerface $sessionHandler
+	 * @return none
+	 */
+	public function setSessionhandler(SessionHandlerInterface $sessionHandler){
 		$this->sessionHandler=$sessionHandler;
+	}
+	
+	public function setUserDataHandler(GlobalHandlerInterface $handler){
+		$this->userDataHandler=$handler;	
 	}
 
 	/**
 	 * This function is the reason why this class defined
-	 * @return unknown_type
+	 *
+	 * @return String
 	 */
 	public function show()
 	{
-
+		//This value stores the actual calculated value for the template.
 		$meHtml='';
-
 		$sid=$this->sessionHandler->session_id();
+		$this->handleUserValues();
 
-		$this->handleForm();
+		if(empty($sid)&&(!empty($this->logInCaptcha))){
+			throw new Exception('If you wish to use captcha support in UACP, please start the session, with session_start(), or simply enable the session auto start feature.');
+		}
+
 
 		if (!$this->logOut->getAuth()->isLoggedIn())
 		{
+			if(!empty($this->logInCaptcha)){
+				
+				if($this->userDataHandler->getValue('uacp_user')){
+					if(!$this->sessionHandler->getValue('uacp_login_cnt')){
 
-			if(!empty($sid)&&(!empty($this->logInCaptcha))){
-
-				if(!isset($_SESSION['uacp_login_cnt'])){
-					$_SESSION['uacp_login_cnt']=0;
-				}
-					$_SESSION['uacp_login_cnt']=++$_SESSION['uacp_login_cnt'];
-
-					if($_SESSION['uacp_login_cnt']>$this->beforeCaptcha){
-						$meHtml=$this->logInCaptcha->show();
+					$this->sessionHandler->setValue('uacp_login_cnt',0);
 					}
-					else{
+					$this->sessionHandler->setValue('uacp_login_cnt',$this->sessionHandler->getValue('uacp_login_cnt')+1);
+					if($this->sessionHandler->getValue('uacp_login_cnt')>=$this->beforeCaptcha){
+							$meHtml=$this->logInCaptcha->show();
+						}
+						else{
+							$meHtml=$this->logIn->show();
+						}
+					
+				}
+				else{
+					if($this->sessionHandler->getValue('uacp_login_cnt')>=$this->beforeCaptcha){
+						$meHtml=$this->logInCaptcha->show();											
+					}else{
 						$meHtml=$this->logIn->show();
 					}
-			/* If the session is not started you cannot use the captcha support
-			 * in the framework
-			 */
-			}else if(empty($sid)&&(!empty($this->logInCaptcha))){
-
-				throw new Exception('If you wish to use captcha support in UACP, please start the session, with session_start(), or simply enable te session autostart feature.');
+				}
 			}
-
-			/* If there is no template object for captcha is initialized, and
-			 * there is no session has started
-			 * */
-
+			/*
+			 * If there is no template object for captcha is initialized, and
+			 * there is no session has started.
+			 */
 			else{
 					$meHtml=$this->logIn->show();
 			}

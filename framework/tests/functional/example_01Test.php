@@ -37,11 +37,28 @@ class Example extends UacpSelenium
     $this->click("uacp_submit_id");
     $this->waitForPageToLoad("30000");
     $this->assertEquals("Log In", $this->getValue("uacp_submit_id"));
-
+	
+	$this->open($path."index.php");
+    $this->open($path."index.php");
+    $this->open($path."index.php");
+	
+	
 	//brings the Captcha
-    $this->open($path."index.php");
-    $this->open($path."index.php");
-    $this->open($path."index.php");
+	$this->type("uacp_user_id", "fooser");
+    $this->type("uacp_pass_id", "badpass");
+    $this->click("uacp_submit_id");
+    $this->waitForPageToLoad("30000");
+
+	$this->type("uacp_user_id", "fooser");
+    $this->type("uacp_pass_id", "badpass");
+    $this->click("uacp_submit_id");
+    $this->waitForPageToLoad("30000");
+
+	$this->type("uacp_user_id", "fooser");
+    $this->type("uacp_pass_id", "badpass");
+    $this->click("uacp_submit_id");
+    $this->waitForPageToLoad("30000");
+
 	$this->assertEquals("", $this->getText("captcha"));
 
 	//tests the captcha with a bad password

@@ -30,10 +30,6 @@ abstract class AuthBoxProto
 	 */
 	protected $authTemplate=null;
 
-	/*
-	 * $tmplElements['CaptchaImage']=$this->getCaptchaImage();
-	 * $tmplElements['CaptchaInputString']=$this->getCaptchaString();
-	 */
 	private $uacp_tpl_login=null;
 	private $uacp_tpl_logout=null;
 	private $uacp_tpl_login_captcha=null;
@@ -49,8 +45,6 @@ abstract class AuthBoxProto
 	function __construct(TemplateLogout $templateLogout)
 	{
 		$this->templateLogout=$templateLogout;
-
-		//TODO ifs
 		$templateLogout->setTemplate($this->uacp_tpl_logout);
 		$templateLogin=new TemplateLogin($this->uacp_tpl_login,$templateLogout->getHandlerUrl());
 		$templateLoginCaptcha=new TemplateLoginCaptcha($this->uacp_tpl_login_captcha,$templateLogout->getHandlerUrl());
@@ -83,15 +77,30 @@ abstract class AuthBoxProto
 	}
 
 	/**
-	 * This function arranges some hack mostly for the unittests.
+	 * This is a wrapper function for one authTemplate fields same called 
+	 * function
+	 * This function arranges some hack mostly for the unit tests.
 	 *
 	 * @param PhpSessionHandlerInerface $sessionHandler
 	 * @return none
 	 */
-	public function setSessionHandler(PhpSessionHandlerInerface $sessionHandler){
+	public function setSessionHandler(SessionHandlerInterface $sessionHandler){
 		$this->authTemplate->setSessionhandler($sessionHandler);
 	}
 
+	/**
+	 * This is a wrapper function for one authTemplate fields same called 
+	 * function
+	 * This function arranges some hack mostly for the unit tests.
+	 *
+	 * @param GlobalHandlerInterface $globalHandler
+	 * @return none
+	 */
+	public function setUserDataHandler(GlobalHandlerInterface $globalHandler){
+		$this->authTemplate->setUserDataHandler($globalHandler);	
+	}	
+
+	
 	/**
 	 * This function is the reason why this class defined. Represents your
 	 * login solution by it's state, whether the user logged in or not.

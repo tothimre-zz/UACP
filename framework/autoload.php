@@ -25,8 +25,12 @@ include 'src/core/auth/InterfaceAuthProcess.php';
 include 'src/core/auth/InterfaceAuth.php';
 include 'src/core/auth/Auth.php';
 
-include 'src/core/templating/PhpSessionHandlerInterface.php';
-include 'src/core/templating/PhpSessionHandler.php';
+include 'src/core/globalhandlers/GlobalHandlerInterface.php';
+include 'src/core/globalhandlers/SessionSpecificInterface.php';
+include 'src/core/globalhandlers/SessionHandlerInterface.php';
+include 'src/core/globalhandlers/PhpSessionHandler.php';
+include 'src/core/globalhandlers/PhpPostHandler.php';
+
 include 'src/core/templating/Template.php';
 include 'src/core/templating/TemplateLogin.php';
 include 'src/core/templating/TemplateLoginCaptcha.php';
@@ -37,7 +41,7 @@ include 'src/ui/AuthBoxProto.php';
 include 'src/ui/AuthBoxFromTemplateFiles.php';
 include 'src/ui/AuthBoxSimple.php';
 
-require_once 'lib/chapcha/securimage.php';
+include 'lib/chapcha/securimage.php';
 
 
 ?>
