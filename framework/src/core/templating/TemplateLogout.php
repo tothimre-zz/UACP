@@ -39,10 +39,10 @@ abstract class TemplateLogout extends Template{
 	 */
 	protected function getTemplateVars(){
 		$tmplElements=parent::getTemplateVars();
-		$tmplElements['UsernameLabel']=$this->getUsernameLabel();
+		$tmplElements[TemplateInterface::USER_NAME_LABEL_INDEX]=$this->getUsernameLabel();
 		return $tmplElements;
 	}
-	
+
 	public function getAuth(){
 		return $this->auth;
 	}

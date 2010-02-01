@@ -15,7 +15,7 @@
    */
 
 /**
- * This file includes the framework To your project
+ * This file includes the framework To your project.
  */
 
 include 'env_config.php';
@@ -31,6 +31,7 @@ include 'src/core/globalhandlers/SessionHandlerInterface.php';
 include 'src/core/globalhandlers/PhpSessionHandler.php';
 include 'src/core/globalhandlers/PhpPostHandler.php';
 
+include 'src/core/templating/TemplateInterface.php';
 include 'src/core/templating/Template.php';
 include 'src/core/templating/TemplateLogin.php';
 include 'src/core/templating/TemplateLoginCaptcha.php';

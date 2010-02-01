@@ -35,10 +35,17 @@ abstract class Template{
 	private $handleUrl;
 	
 	/**
-	 * 
+	 * This is the constructor of this class.
+	 *
 	 * @param $template
+	 * It is an optional paramerter and sets the template value, before you
+	 * calling the show() fuction should declare it.
+	 *
 	 * @param $handleUrl
-	 * @return unknown_type
+	 * This variable represents an url for the form action where the
+	 * processing of the sent login or logout data should be taken.
+	 *
+	 * @return none
 	 */
 	function __construct($template=null,$handleUrl=null){
 		
@@ -88,8 +95,8 @@ abstract class Template{
 	 * @return string
 	 */
 	protected function getTemplateVars(){
-		$tmplElements['HandlerUrl']=$this->getHandlerUrl();
-		$tmplElements['InputSubmitString']='uacp_submit';
+		$tmplElements[TemplateInterface::INPUT_HANDLER_URL_INDEX]=$this->getHandlerUrl();
+		$tmplElements[TemplateInterface::SUBMIT_INDEX_FOR_HTML_FORM_INPUT]=TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT;
 		return $tmplElements;
 	}
 	
@@ -114,7 +121,6 @@ abstract class Template{
         
         return $tpl;
 	}
-	
 	
 }
 ?>

@@ -21,6 +21,7 @@ interface GlobalHandlerInterface{
 	 * @param mixed $value
 	 * @return mixed
 	 */
+
 	public function getValue($index);
 
 }

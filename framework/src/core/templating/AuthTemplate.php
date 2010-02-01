@@ -22,7 +22,7 @@
 class AuthTemplate
 {
 	private $logIn=null;
-	public $logOut=null;
+	private $logOut=null;
 	private $logInCaptcha=null;
 	private $beforeCaptcha=null;
 	private $sessionHandler=null;
@@ -65,36 +65,36 @@ class AuthTemplate
 
 		if($this->logOut->getAuth()->isLoggedIn()
 			&&
-			!$this->userDataHandler->getValue('uacp_user')
+			!$this->userDataHandler->getValue(TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT)
 			&&
-			!$this->userDataHandler->getValue('uacp_pass')
+			!$this->userDataHandler->getValue(TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT)
 			&&
-			$this->userDataHandler->getValue('uacp_submit')
+			$this->userDataHandler->getValue(TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT)
 			
 			)
 		{
-			$this->sessionHandler->setValue('uacp_login_cnt',0);
+			$this->sessionHandler->setValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT,0);
 			$this->logOut->getAuth()->logOut();
 		}
 		else
 		{
 			$user;$pass;
-			if($this->userDataHandler->getValue('uacp_user')){
-				$user=$this->userDataHandler->getValue('uacp_user');
+			if($this->userDataHandler->getValue(TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT)){
+				$user=$this->userDataHandler->getValue(TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT);
 			}
 
-			if($this->userDataHandler->getValue('uacp_pass')){
-				$pass=$this->userDataHandler->getValue('uacp_pass');
+			if($this->userDataHandler->getValue(TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT)){
+				$pass=$this->userDataHandler->getValue(TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT);
 			}
 			if(!empty($user)&&!empty($pass)){
 
-				if($this->sessionHandler->getValue('uacp_login_cnt')<=$this->beforeCaptcha-1){
+				if($this->sessionHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)<=$this->beforeCaptcha-1){
 					$this->logOut->getAuth()->logIn($user,$pass);
 				}else{
 					//this little hacking is for the unittests.
 					if(!isset($this->userDataHandler->test)){
 						$image = new Securimage();
-						if ($image->check($this->userDataHandler->getValue('captcha_code')) == true) {
+						if ($image->check($this->userDataHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)) == true) {
 						  $this->logOut->getAuth()->logIn($user,$pass);
 						}						
 					}
@@ -138,13 +138,13 @@ class AuthTemplate
 		{
 			if(!empty($this->logInCaptcha)){
 				
-				if($this->userDataHandler->getValue('uacp_user')){
-					if(!$this->sessionHandler->getValue('uacp_login_cnt')){
+				if($this->userDataHandler->getValue(TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT)){
+					if(!$this->sessionHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)){
 
-					$this->sessionHandler->setValue('uacp_login_cnt',0);
+					$this->sessionHandler->setValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT,0);
 					}
-					$this->sessionHandler->setValue('uacp_login_cnt',$this->sessionHandler->getValue('uacp_login_cnt')+1);
-					if($this->sessionHandler->getValue('uacp_login_cnt')>=$this->beforeCaptcha){
+					$this->sessionHandler->setValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT,$this->sessionHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)+1);
+					if($this->sessionHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)>=$this->beforeCaptcha){
 							$meHtml=$this->logInCaptcha->show();
 						}
 						else{
@@ -153,7 +153,7 @@ class AuthTemplate
 					
 				}
 				else{
-					if($this->sessionHandler->getValue('uacp_login_cnt')>=$this->beforeCaptcha){
+					if($this->sessionHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)>=$this->beforeCaptcha){
 						$meHtml=$this->logInCaptcha->show();											
 					}else{
 						$meHtml=$this->logIn->show();

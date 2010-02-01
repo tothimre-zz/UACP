@@ -27,8 +27,8 @@ class TemplateLogin extends Template{
 	 */
 	protected function getTemplateVars(){
 		$tmplElements=parent::getTemplateVars();
-		$tmplElements['UsernameInputString']='uacp_user';
-		$tmplElements['PasswordInputString']='uacp_pass';	
+		$tmplElements[TemplateInterface::USER_NAME_INDEX_FOR_HTML_FORM_INPUT]=TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT;
+		$tmplElements[TemplateInterface::USER_PASS_INDEX_FOR_HTML_FORM_INPUT]=TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT;
 		return $tmplElements;
 	}
 			
