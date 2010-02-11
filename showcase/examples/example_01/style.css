@@ -1,0 +1,41 @@
+/* 
+    Document   : style
+    Created on : 09-Feb-2010, 14:54:34
+    Author     : itoth
+    Description:
+        This stylesheet is an example fot formatting the AuthBoxSimple class
+        of theproject. It is not a recommendation, feel free to create your own
+        design.
+*/
+
+root { 
+    display: block;
+}
+body
+{
+    background-color:#92C1F0;
+}
+.uacp_username_label{
+}
+
+.uacp_login{
+    width: 200px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 300px;
+    margin: auto;
+
+}
+
+
+.uacp_captcha_input_container{
+    padding-top: 15px;
+}
+
+.uacp_user_submit_conatiner{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

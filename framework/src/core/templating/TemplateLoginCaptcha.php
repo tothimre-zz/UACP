@@ -15,23 +15,32 @@ limitations under the License.
 */
 class TemplateLoginCaptcha extends TemplateLogin{
 	
-	
+
+        function  __construct($template=null,$handleUrl=null) {
+            /* The URL_OF_UACP constant is needed to define the absolute url
+             * path where the captcha support besides. It is not the best
+             * soloution because brokes the OOP paradigm, but it is the less
+             * painless for the users you can define it at the env_config.php.
+             */
+            if(URL_OF_UACP==URL_OF_UACP_CHANGEME){
+                    throw new Exception('If You Would use the Chaptcha support '. 
+                                        'provided by the UACP framework, please '.
+                                        'modify at the env_config.php file the '.
+                                        'value of the URL_OF_UACP constant. '.
+                                        'You will find explanation there.');
+            }
+            
+            parent::__construct($template, $handleUrl);
+
+        }
+
 	/**
 	 * Provides a html Image tag that idicates the captcha mechanism.
 	 * 
 	 * @return sring
 	 */
-	public function getCaptchaImage(){
-		
-		/* The URL_OF_UACP constant is needed to define the absolute url
-		 * path where the captcha support besides. It is not the best
-		 * soloution because brokes the OOP paradigm, but it is the less
-		 * painless for the users you can define it at the env_config.php.
-		 */
-		if(URL_OF_UACP==URL_OF_UACP_CHANGEME){
-			throw new Exception('If You Would use the Chaptcha support provided by the UACP framework, please modify at the env_config.php file the value of the URL_OF_UACP constant. You will find explanation there.');
-		}
-		return'<img id="captcha" src="'.URL_OF_UACP.'lib/chapcha/securimage_show.php" alt="CAPTCHA Image" />';
+	public function getCaptchaImage(){	
+            return'<img id="captcha" src="'.URL_OF_UACP.'lib/chapcha/securimage_show.php" alt="CAPTCHA Image" />';
 	}
 	
 	/**

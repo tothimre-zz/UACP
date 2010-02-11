@@ -72,13 +72,27 @@ class AuthBoxFromTemplateFiles extends AuthBoxProto
 	}
 	
 	/**	
-	 * This function takes care of the templatefile loading
+	 * This function takes care of the templatefile loading.
 	 * 
-	 * @return String
+	 * @return mixed
+	 * Returns null if there is no such a file, else the file content.
 	 */	
 	private function loadFile($file){
-		
-		return file_get_contents ($file,true);
+
+
+		if(file_exists(dirname($_SERVER['SCRIPT_FILENAME']).'/'.$file))
+		{
+			$fileData=file_get_contents ($file,true);
+			
+			if ($fileData){
+				return $fileData;
+			}
+			else{
+				return null;
+			}
+
+		}
 	}
+
 }
 ?>

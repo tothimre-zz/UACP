@@ -26,7 +26,7 @@ abstract class Template{
 	 * In this variable is stored the template. 
 	 * @var string
 	 */
-	private $template;
+	protected $template;
 	
 	/**
 	 * The form action is stored here. 
@@ -107,13 +107,9 @@ abstract class Template{
 	 * @return string
 	 */
 	public function show(){
-		
-		if($this->template==null){
-			throw new Exception('Please define the template by using the setTemplate() function of this class or bassing it to it\'s constructor');
-		}
-		
 		$tpl=$this->template;
 		
+
         foreach($this->getTemplateVars() as $name=>$value) {
 
             $tpl = str_replace('{' . $name . '}', $value, $tpl);

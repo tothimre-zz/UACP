@@ -21,12 +21,16 @@
  */
 class AuthTemplate
 {
-	private $logIn=null;
-	private $logOut=null;
-	private $logInCaptcha=null;
+	private $templateLogIn=null;
+	private $templateLogOut=null;
+	private $templateLogInCaptcha=null;
+	
 	private $beforeCaptcha=null;
 	private $sessionHandler=null;
 	private $userDataHandler=null;
+	private $phpGetDataHandler=null;
+
+	const LOGOUT_STRING='logout';
 
 	/**
 	 *
@@ -46,14 +50,21 @@ class AuthTemplate
 	 */
 	function __construct(TemplateLogout$logOut,TemplateLogin $logIn,TemplateLoginCaptcha $logInCaptcha=null,$beforeCaptcha=3)
 	{
-		$this->logIn=$logIn;
-		$this->logOut=$logOut;
-		$this->logInCaptcha=$logInCaptcha;
+		$this->templateLogIn=$logIn;
+		$this->templateLogOut=$logOut;
+		$this->templateLogInCaptcha=$logInCaptcha;
 		$this->beforeCaptcha=$beforeCaptcha;
 		$this->setSessionhandler(new PhpSessionHandler());
 		$this->setUserDataHandler(new PhpPostHandler());
-	}
+		$this->setGetHandler(new PhpGetHandler());
 
+		if($this->phpGetDataHandler->getValue(self::LOGOUT_STRING))
+			   {
+				if($this->templateLogOut->getAuth()->isLoggedIn()){
+					$this->logout();
+				}
+			}
+	}
 
 	/**
 	 * Handles values form the authentication form.
@@ -63,7 +74,7 @@ class AuthTemplate
 	private function handleUserValues()
 	{
 
-		if($this->logOut->getAuth()->isLoggedIn()
+		if($this->templateLogOut->getAuth()->isLoggedIn()
 			&&
 			!$this->userDataHandler->getValue(TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT)
 			&&
@@ -73,8 +84,7 @@ class AuthTemplate
 			
 			)
 		{
-			$this->sessionHandler->setValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT,0);
-			$this->logOut->getAuth()->logOut();
+			$this->logout();
 		}
 		else
 		{
@@ -89,18 +99,23 @@ class AuthTemplate
 			if(!empty($user)&&!empty($pass)){
 
 				if($this->sessionHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)<=$this->beforeCaptcha-1){
-					$this->logOut->getAuth()->logIn($user,$pass);
+					$this->templateLogOut->getAuth()->logIn($user,$pass);
 				}else{
 					//this little hacking is for the unittests.
 					if(!isset($this->userDataHandler->test)){
 						$image = new Securimage();
 						if ($image->check($this->userDataHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)) == true) {
-						  $this->logOut->getAuth()->logIn($user,$pass);
+						  $this->templateLogOut->getAuth()->logIn($user,$pass);
 						}						
 					}
 				}
 			}
 		}
+	}
+
+	private function logout(){
+			$this->sessionHandler->setValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT,0);
+			$this->templateLogOut->getAuth()->logOut();
 	}
 
 	/**
@@ -114,7 +129,15 @@ class AuthTemplate
 	}
 	
 	public function setUserDataHandler(GlobalHandlerInterface $handler){
-		$this->userDataHandler=$handler;	
+		$this->userDataHandler=$handler;
+	}
+
+	/**
+	 * This function sets the handler for the php $_GET array it is generalized
+	 * for testing reasons.
+	 */
+	public function setGetHandler(GlobalHandlerInterface $handler){
+		$this->phpGetDataHandler=$handler;
 	}
 
 	/**
@@ -129,14 +152,14 @@ class AuthTemplate
 		$sid=$this->sessionHandler->session_id();
 		$this->handleUserValues();
 
-		if(empty($sid)&&(!empty($this->logInCaptcha))){
+		if(empty($sid)&&(!empty($this->templateLogInCaptcha))){
 			throw new Exception('If you wish to use captcha support in UACP, please start the session, with session_start(), or simply enable the session auto start feature.');
 		}
 
 
-		if (!$this->logOut->getAuth()->isLoggedIn())
+		if (!$this->templateLogOut->getAuth()->isLoggedIn())
 		{
-			if(!empty($this->logInCaptcha)){
+			if(!empty($this->templateLogInCaptcha)){
 				
 				if($this->userDataHandler->getValue(TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT)){
 					if(!$this->sessionHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)){
@@ -145,18 +168,18 @@ class AuthTemplate
 					}
 					$this->sessionHandler->setValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT,$this->sessionHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)+1);
 					if($this->sessionHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)>=$this->beforeCaptcha){
-							$meHtml=$this->logInCaptcha->show();
+							$meHtml=$this->templateLogInCaptcha->show();
 						}
 						else{
-							$meHtml=$this->logIn->show();
+							$meHtml=$this->templateLogIn->show();
 						}
 					
 				}
 				else{
 					if($this->sessionHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)>=$this->beforeCaptcha){
-						$meHtml=$this->logInCaptcha->show();											
+						$meHtml=$this->templateLogInCaptcha->show();
 					}else{
-						$meHtml=$this->logIn->show();
+						$meHtml=$this->templateLogIn->show();
 					}
 				}
 			}
@@ -165,13 +188,13 @@ class AuthTemplate
 			 * there is no session has started.
 			 */
 			else{
-					$meHtml=$this->logIn->show();
+					$meHtml=$this->templateLogIn->show();
 			}
 
 		}
 		else
 		{
-			$meHtml=$this->logOut->show();
+			$meHtml=$this->templateLogOut->show();
 		}
 		return $meHtml;
 	}

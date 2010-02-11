@@ -41,11 +41,11 @@ class MyAuthClass extends Auth
 	{
                 if(isset($_SESSION['UACP_USER_DATA']))
                 {
-		   return $_SESSION['UACP_USER_DATA'];
+					return $_SESSION['UACP_USER_DATA'];
                 }
                 else
                 {
-                  return null;
+					return null;
                 }
 	}
 

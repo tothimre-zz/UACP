@@ -1,0 +1,44 @@
+/* 
+    Document   : style
+    Created on : 09-Feb-2010, 14:54:34
+    Author     : itoth
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+body
+{
+    background-color:#92C1F0;
+}
+.uacp_username_label{
+}
+
+.uacp_login{
+    width: 200px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 300px;
+    margin: auto;
+
+}
+
+
+.uacp_captcha_input_container{
+    padding-top: 15px;
+}
+
+.uacp_user_submit_conatiner{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

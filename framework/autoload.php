@@ -30,6 +30,7 @@ include 'src/core/globalhandlers/SessionSpecificInterface.php';
 include 'src/core/globalhandlers/SessionHandlerInterface.php';
 include 'src/core/globalhandlers/PhpSessionHandler.php';
 include 'src/core/globalhandlers/PhpPostHandler.php';
+include 'src/core/globalhandlers/PhpGetHandler.php';
 
 include 'src/core/templating/TemplateInterface.php';
 include 'src/core/templating/Template.php';
@@ -40,9 +41,8 @@ include 'src/core/templating/AuthTemplate.php';
 
 include 'src/ui/AuthBoxProto.php';
 include 'src/ui/AuthBoxFromTemplateFiles.php';
+include 'src/ui/AuthBoxFromDirectory.php';
 include 'src/ui/AuthBoxSimple.php';
 
 include 'lib/chapcha/securimage.php';
-
-
 ?>

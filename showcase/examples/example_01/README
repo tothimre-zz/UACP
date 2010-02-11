@@ -1,8 +1,9 @@
-This Example is a start point to the UACP framework. This example uses the 
-built in default template of this package. The Auth object is configured like 
-this:
+You can log in like this
 	Username:fooser
 	Password:foopass
+
+This Example is a start point to the UACP framework. This example uses the 
+built in default template of this package.
 	
 If you reload or fail the login three times the captcha authentication is 
 required to pass the authentication process.
@@ -10,12 +11,19 @@ required to pass the authentication process.
 ================================================================================
 The directory structure you see:
 
-Index.php
-	This file contains the authentication action.
+page_elemets
+	The folder contains a minimal mock for putting this demo into a
+	templating context.
+
+README
+	This file itself.
 	
 classes_for_theExample.php
 	This file contains the classes needed to be implemented for the 
 	authentication.
 
-README
-	This file itself.
+Index.php
+	This file contains the authentication action.
+
+style.css
+	This is a possible styleng for the AuthBoxSimple class.

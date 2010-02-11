@@ -44,6 +44,10 @@ abstract class AuthBoxProto
 	 */
 	function __construct(TemplateLogout $templateLogout)
 	{
+		/*
+		 * This initializes the templates without exact template strings.
+		 */
+		
 		$this->templateLogout=$templateLogout;
 		$templateLogout->setTemplate($this->uacp_tpl_logout);
 		$templateLogin=new TemplateLogin($this->uacp_tpl_login,$templateLogout->getHandlerUrl());
@@ -54,8 +58,7 @@ abstract class AuthBoxProto
 
 	/**
 	 * Sets the string value of the $uacp_tpl_login variable
-	 *
-	 */
+	 */	
 	protected function setLoginTemplate($tpl){
 		$this->uacp_tpl_login=$tpl;
 	}

@@ -1,6 +1,10 @@
 <?php
 //define the path as relative
-$path = $_GET['path'];
+$path='';
+
+if (isset($_GET['path'])){
+    $path = $_GET['path'];
+}
 $showdir=null;
 $showFiles=null;
 

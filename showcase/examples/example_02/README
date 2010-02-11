@@ -1,0 +1,33 @@
+You can log in like this
+	Username:fooser
+	Password:foopass
+
+
+
+This Example is a start point to the UACP framework. Tihis example is made for
+to the a look to the templating capabilityes of the framework. Just simply
+craete a directory where you would authenticate, put the template files there,
+give the directoy name you created previously as a second pararmeter to the
+constructor of the AuthBoxFromDirectory. And you can use your templates for
+your authentication.
+
+	
+If you reload or fail the login three times the captcha authentication is 
+required to pass the authentication process.
+
+================================================================================
+The directory structure you see:
+
+page_elemets
+	The folder contains a minimal mock for putting this demo into a
+	templating context.
+
+Index.php
+	This file contains the authentication action.
+	
+classes_for_theExample.php
+	This file contains the classes needed to be implemented for the 
+	authentication.
+
+README
+	This file itself.

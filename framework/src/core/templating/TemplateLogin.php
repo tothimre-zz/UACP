@@ -31,6 +31,18 @@ class TemplateLogin extends Template{
 		$tmplElements[TemplateInterface::USER_PASS_INDEX_FOR_HTML_FORM_INPUT]=TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT;
 		return $tmplElements;
 	}
+
+	public function show(){
+
+		
+		if($this->template==null){
+			throw new Exception('Please define the template by using the setTemplate() function of this class or bassing it to it\'s constructor');
+		}
+
+		return parent::show();
+
+
+	}
 			
 }
 

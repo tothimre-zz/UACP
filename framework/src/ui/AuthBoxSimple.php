@@ -20,7 +20,7 @@
  * your css definitions.
  *
  */
-class AuthBoxSimple extends AuthBoxFromTemplateFiles
+class AuthBoxSimple extends AuthBoxFromDirectory
 {
 
 	/**
@@ -33,11 +33,8 @@ class AuthBoxSimple extends AuthBoxFromTemplateFiles
 	 */
 	function __construct(TemplateLogout $templateLogout)
 	{
-		$this->setLoginTemplateFormFile('AuthBoxSimpleTemplates/login.tpl');
-		$this->setLogoutTemplateFromFile('AuthBoxSimpleTemplates/logout.tpl');
-		$this->setLoginCaptchaTemplateFromFile('AuthBoxSimpleTemplates/login_captcha.tpl');
-
-		parent::__construct($templateLogout);
+		parent::__construct($templateLogout,'AuthBoxSimpleTemplates');
+                
 	}
 }
 ?>
