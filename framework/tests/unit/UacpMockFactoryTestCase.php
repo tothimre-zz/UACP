@@ -50,21 +50,25 @@ class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
 		return new MockAuthClass();
 	}
 
+	/*
 
-	public function getTemplateLogoutMock()
+interface GetUserNameInterface {
+
+	public function getUserName();
+
+}
+	 */
+
+	public function GetUserNameInterface(InterfaceAuth $auth)
 	{
+
+		$gi= new MockGetUserNameInterface($auth);
 		$AuthMock=$this->getAuthMock();
 		$params[]=$AuthMock;
 		$params[]='{UsernameLabel}';
 		$params[]='foourl';
 
-		$mockTemplateLogout = $this->getMockForAbstractClass('TemplateLogout',$params);
-
-		$mockTemplateLogout->expects($this->any())
-        	->method('getUsernameLabel')
-			->will($this->returnValue('fooser'));
-
-		return $mockTemplateLogout;
+		return $gi;
 	}
 }
 
@@ -178,6 +182,27 @@ class MockPostHandler implements GlobalHandlerInterface{
 		else{
 			return null;
 		}
+	}
+}
+
+class MockGetUserNameInterface implements GetUserNameInterface{
+
+	/**
+	 *
+	 * @var InterfaceAuth
+	 */
+	var $auth;
+
+	function  __construct(InterfaceAuth $auth){
+		$this->auth=$auth;
+	}
+
+	function getUserName(){
+		return $this->auth->getAuthenticatedData();
+	}
+
+	function getAuth(){
+		return $this->auth;
 	}
 }
 ?>

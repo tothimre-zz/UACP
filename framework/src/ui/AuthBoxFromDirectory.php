@@ -25,17 +25,17 @@ class AuthBoxFromDirectory extends AuthBoxFromTemplateFiles
 	 * all the other templates could got the needed information for the
 	 * initialization.
 	 *
-	 * @param TemplateLogout $templateLogout
-         * @param $directory
+	 * @param InterfaceAuth $auth
+	 * @param $directory
 	 *
 	 */
-	function __construct(TemplateLogout $templateLogout,$directory)
+	function __construct(InterfaceAuth $auth, $getUserNameInterface=null,$directory)
 	{
+		parent::__construct($auth,$getUserNameInterface);
 		$this->setLoginTemplateFormFile($directory.'/'.self::LOGIN);
 		$this->setLogoutTemplateFromFile($directory.'/'.self::LOGOUT);
 		$this->setLoginCaptchaTemplateFromFile($directory.'/'.self::LOGIN_CAPTCHA);
 
-		parent::__construct($templateLogout);
 	}
 }
 

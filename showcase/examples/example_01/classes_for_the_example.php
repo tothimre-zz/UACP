@@ -5,13 +5,9 @@
  */
 require '../../../framework/autoload.php';
 
-/**
- * Implementing of getting the "String" value  of the user.
- */
-
-class MyTemplateLogout extends TemplateLogout
+class MyGetUserNameInterface implements GetUserNameInterface
 {
-	public function getUsernameLabel()
+	public function getUserName()
 	{
 		return $_SESSION['UACP_USER_DATA'];
 	}
@@ -71,8 +67,8 @@ class example_01
 	function __construct()
 	{
 		$auth=new MyAuthClass();
-		$myLogout=new MyTemplateLogout($auth);
-		$this->myAuthBox=new AuthBoxSimple($myLogout);
+		$myGetUserNameInterface=new MyGetUserNameInterface();
+		$this->myAuthBox=new AuthBoxSimple($auth,$myGetUserNameInterface);
 	}
 
 	/*

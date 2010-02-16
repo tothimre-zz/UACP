@@ -28,19 +28,5 @@
 	$example = new example_03();
 	$example->show();
 
-	//I wil put te following lines transpanently to the  ->show method.
-	if($example->getAuth()->isLoggedIn()){
-		if(!headers_sent()){
-			header('Location: logout/page.html');
-		}
-		else{
-			echo'
-			<SCRIPT language="JavaScript">
-			<!--
-				window.location="logout/page.html";
-			//-->
-			</SCRIPT>';
-		}
 
-	}
 ?>

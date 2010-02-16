@@ -19,7 +19,7 @@ limitations under the License.
  * 
  */
 class TemplateLogin extends Template{
-	
+
 	/**
 	 * Redefines the original function, or extends it by giving more template 
 	 * variables regarding the login process 
@@ -34,14 +34,12 @@ class TemplateLogin extends Template{
 
 	public function show(){
 
-		
 		if($this->template==null){
-			throw new Exception('Please define the template by using the setTemplate() function of this class or bassing it to it\'s constructor');
+			throw new Exception('Please define the template by using the 
+								 setTemplate() function of this class or bassing
+								 it to it\'s constructor');
 		}
-
 		return parent::show();
-
-
 	}
 			
 }

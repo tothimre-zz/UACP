@@ -9,7 +9,7 @@ class Example extends UacpSelenium
   	$path="showcase/examples/example_01/";
   	//opens the page and checks the
     $this->open($path."index.php");
-  	    $this->type("uacp_user_id", "");
+	$this->type("uacp_user_id", "");
     $this->assertEquals("Log In", $this->getValue("uacp_submit_id"));
 
     //bad login

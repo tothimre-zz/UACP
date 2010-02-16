@@ -3,15 +3,15 @@
  * This file simply shows you how to implement 5 functions to get your full
  * featured authentication module.
  */
-require '../../../framework/autoload.php';
-
+include '../../../framework/autoload.php';
+include '../../common/config.php';
 /**
  * Implementing of getting the "String" value  of the user.
  */
 
-class MyTemplateLogout extends TemplateLogout
+class MyGetUserNameInterface implements GetUserNameInterface
 {
-	public function getUsernameLabel()
+	public function getUserName()
 	{
 		return $_SESSION['UACP_USER_DATA'];
 	}
@@ -63,24 +63,25 @@ class MyAuthClass extends Auth
  */
 class example_03
 {
+	/**
+	 *
+	 * @var AuthBoxFromDirectory
+	 */
 	private $myAuthBox;
 
-	private $auth;
 	function __construct()
 	{
-		$this->auth=new MyAuthClass();
-		$myLogout=new MyTemplateLogout($this->auth);
-		$this->myAuthBox=new AuthBoxFromDirectory($myLogout,"templates");
+		$auth=new MyAuthClass();
+		$aa=new MyGetUserNameInterface();
+		$this->myAuthBox=new AuthBoxFromDirectory($auth,$aa,'templates');
+		$this->myAuthBox->setAfterLoginUrl(EXAMPLE_BASE_URL.'example_03/logout.php');
+		$this->myAuthBox->setLogoutUrl(EXAMPLE_BASE_URL.'example_03/index.php');
 	}
 
-	function getAuth(){
-		return $this->auth;
+	public function getMyAuthBox(){
+		return $this->myAuthBox;
 	}
-	/*
-	 * A simple wrapper for the $this->myAuthBox->show() function. The only
-	 * difference is that this function not gives back it's contents but prints
-	 * that.
-	 */
+	
 	function show()
 	{
 		echo $this->myAuthBox->show();

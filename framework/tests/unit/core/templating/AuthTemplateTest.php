@@ -20,11 +20,11 @@ class AuthTemplateTest extends UacpMockFactoryTestCase
 {
 	public function testShow()
 	{
-		$TemplateLogout=$this->getTemplateLogoutMock();
-		$auth=$TemplateLogout->getAuth();
-
-		$TemplateLogin=new TemplateLogin('{UsernameInputString}{PasswordInputString}{HandlerUrl}..login..','testurl');
-		$TemplateLoginCaptcha=new TemplateLoginCaptcha('{UsernameInputString}{PasswordInputString}{HandlerUrl}{CaptchaImage}{CaptchaImputString}..loginCaptcha..','testurl');
+		$getUserNameInterface=$this->GetUserNameInterface($this->getAuthMock());
+		
+		$TemplateLogout= new TemplateLogout('{'.TemplateInterface::USER_NAME_LABEL_INDEX.'}'.'{'.TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT.'}', $getUserNameInterface->getAuth(), 'http://testurl', $getUserNameInterface);
+		$TemplateLogin=new TemplateLogin('{'.TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::INPUT_HANDLER_URL_INDEX.'}'.'{'.TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT.'}','testurl');
+		$TemplateLoginCaptcha=new TemplateLoginCaptcha('{'.TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::INPUT_HANDLER_URL_INDEX.'}'.'{'.TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::CAPTCHA_IMAGE_INDEX.'}'.'{'.TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT.'}','testurl');
 
 		$loginBox=new AuthTemplate($TemplateLogout,$TemplateLogin,$TemplateLoginCaptcha);
 		
@@ -70,11 +70,14 @@ class AuthTemplateTest extends UacpMockFactoryTestCase
      */
 	public function testShowButNotSessionStarted(){
 
-		$TemplateLogout=$this->getTemplateLogoutMock();
-		$auth=$TemplateLogout->getAuth();
+		$getUserNameInterface=$this->GetUserNameInterface($this->getAuthMock());
 
-		$TemplateLogin=new TemplateLogin('{UsernameInputString}{PasswordInputString}{HandlerUrl}','testurl');
-		$TemplateLoginCaptcha=new TemplateLoginCaptcha('{UsernameInputString}{PasswordInputString}{HandlerUrl}{CaptchaImage}{CaptchaImputString}','testurl');
+
+		$auth=$getUserNameInterface->getAuth();
+
+		$TemplateLogout= new TemplateLogout('{'.TemplateInterface::USER_NAME_LABEL_INDEX.'}'.'{'.TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT.'}', $getUserNameInterface->getAuth(), 'http://testurl', $getUserNameInterface);
+		$TemplateLogin=new TemplateLogin('{'.TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::INPUT_HANDLER_URL_INDEX.'}'.'{'.TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT.'}','testurl');
+		$TemplateLoginCaptcha=new TemplateLoginCaptcha('{'.TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::INPUT_HANDLER_URL_INDEX.'}'.'{'.TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT.'}'.'{'.TemplateInterface::CAPTCHA_IMAGE_INDEX.'}'.'{'.TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT.'}','testurl');
 
 		$loginBox=new AuthTemplate($TemplateLogout,$TemplateLogin,$TemplateLoginCaptcha);
 		$sessionMock=$this->getMockSessionHandler();

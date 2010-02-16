@@ -13,7 +13,7 @@ class UacpSelenium extends PHPUnit_Extensions_SeleniumTestCase
 	 * 
 	 * @var String
 	 */
-  protected $baseUrl="http://localhost/UACP/";
+  protected $baseUrl="http://localhost/tothimre-UACP-af7632c/";
 
   function setUp()
   {

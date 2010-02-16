@@ -48,7 +48,7 @@ abstract class Template{
 	 * @return none
 	 */
 	function __construct($template=null,$handleUrl=null){
-		
+
 		$this->setTemplate($template);
 		
 		if ($handleUrl==null){
@@ -62,7 +62,7 @@ abstract class Template{
 	/**
 	 * This sets the template.
 	 * 
-	 * @param strinf $template
+	 * @param string $template
 	 */
 	public function setTemplate($template){
 		$this->template=$template;

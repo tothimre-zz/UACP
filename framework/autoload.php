@@ -32,6 +32,7 @@ include 'src/core/globalhandlers/PhpSessionHandler.php';
 include 'src/core/globalhandlers/PhpPostHandler.php';
 include 'src/core/globalhandlers/PhpGetHandler.php';
 
+include 'src/core/templating/GetUserNameInterface.php';
 include 'src/core/templating/TemplateInterface.php';
 include 'src/core/templating/Template.php';
 include 'src/core/templating/TemplateLogin.php';

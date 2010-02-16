@@ -20,9 +20,12 @@ class AuthBoxSimpleTest extends UacpMockFactoryTestCase
 {
 	public function testShow()
 	{
-		$logout=$this->getTemplateLogoutMock();
 
-		$authBox=new AuthBoxSimple($logout);
+		$getUserNameInterface=$this->GetUserNameInterface($this->getAuthMock());
+
+		$auth=$getUserNameInterface->getAuth();
+
+		$authBox=new AuthBoxSimple($auth,$getUserNameInterface);
 
 		$sessionMock=$this->getMockSessionHandler();
 		/*
@@ -34,11 +37,7 @@ class AuthBoxSimpleTest extends UacpMockFactoryTestCase
 
 		$authBox->setUserDataHandler($this->getMockPostHandler('fooser','badpass'));
 		$login=$authBox->show();
-//		$authBox->setUserDataHandler($this->getMockPostHandler('fooser','foopass'));
 		$logout=$authBox->show();
-
-//		$this->assertTrue($login!=$logout);
-//		$this->assertTrue((strpos($logout,'fooser')!=false)||strpos($logout,'fooser')===0);
 
 	}
 

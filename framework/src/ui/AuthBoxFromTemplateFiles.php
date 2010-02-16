@@ -29,11 +29,11 @@ class AuthBoxFromTemplateFiles extends AuthBoxProto
 	 * initialistation.
 	 * 
 	 * @param TemplateLogout $templateLogout
-	 * 
+	 * @param GetUserNameInterface $getUserNameInterface
 	 */
-	function __construct(TemplateLogout $templateLogout) 
+	function __construct(InterfaceAuth $auth, $getUserNameInterface=null)
 	{		
-		parent::__construct($templateLogout);
+		parent::__construct($auth, $getUserNameInterface);
 	}
 	
 	/**
@@ -43,8 +43,8 @@ class AuthBoxFromTemplateFiles extends AuthBoxProto
 	 * @param string $file
 	 */
 	public function setLoginTemplateFormFile($file){
-		
-		$this->setLoginTemplate($this->loadFile($file));	
+			$this->getTemplateLogIn()->setTemplate($this->loadFile($file));
+
 	}
 	
 	/**
@@ -54,9 +54,7 @@ class AuthBoxFromTemplateFiles extends AuthBoxProto
 	 * @param unknown_type $file
 	 */
 	public function setLogoutTemplateFromFile($file){
-		
-		$this->setLogoutTemplate($this->loadFile($file));
-		
+			$this->getTemplateLogOut()->setTemplate($this->loadFile($file));
 	}
 	
 	/**
@@ -66,9 +64,7 @@ class AuthBoxFromTemplateFiles extends AuthBoxProto
 	 * @param string $file
 	 */
 	public function setLoginCaptchaTemplateFromFile($file){
-		
-		$this->setLoginCaptchaTemplate($this->loadFile($file));
-			
+			$this->getTemplateLogInCaptcha()->setTemplate($this->loadFile($file));
 	}
 	
 	/**	
@@ -78,9 +74,7 @@ class AuthBoxFromTemplateFiles extends AuthBoxProto
 	 * Returns null if there is no such a file, else the file content.
 	 */	
 	private function loadFile($file){
-
-
-		if(file_exists(dirname($_SERVER['SCRIPT_FILENAME']).'/'.$file))
+		if($this->fileExist($file))
 		{
 			$fileData=file_get_contents ($file,true);
 			
@@ -92,6 +86,10 @@ class AuthBoxFromTemplateFiles extends AuthBoxProto
 			}
 
 		}
+	}
+
+	protected function fileExist($file){
+		return file_exists(dirname($_SERVER['SCRIPT_FILENAME']).'/'.$file);
 	}
 
 }

@@ -18,18 +18,33 @@ limitations under the License.
  * 
  * 
  */
-abstract class TemplateLogout extends Template{
+class TemplateLogout extends Template{
 
 	/**
 	 * It is an instance of the InterfaceAuth it is 
 	 *  
 	 * @var InterfaceAuth
 	 */
-	private $auth;
-	
-	function __construct(InterfaceAuth $auth,$template=null,$handleUrl=null){
+	private $auth=null;
+
+	/**
+	 *
+	 * @var GetUserNameInterface
+	 */
+	private $getUserNameInterface=null;
+
+	/**
+	 *
+	 * @param string $template
+	 * @param InterfaceAuth $auth
+	 * @param string $handleUrl
+	 * @param GetUserNameInterface $getUserNameInterface
+	 */
+	function __construct($template=null, InterfaceAuth $auth=null, $handleUrl=null, $getUserNameInterface=null){
 		parent::__construct($template,$handleUrl);
 		$this->auth=$auth;
+		if($getUserNameInterface!=null)
+			$this->setGetUserNameInterface($getUserNameInterface);
 	}
 	
 	/**
@@ -39,15 +54,18 @@ abstract class TemplateLogout extends Template{
 	 */
 	protected function getTemplateVars(){
 		$tmplElements=parent::getTemplateVars();
-		$tmplElements[TemplateInterface::USER_NAME_LABEL_INDEX]=$this->getUsernameLabel();
+		if ($this->getUserNameInterface!=null)
+			$tmplElements[TemplateInterface::USER_NAME_LABEL_INDEX]=$this->getUserNameInterface->getUserName();
 		return $tmplElements;
 	}
 
 	public function getAuth(){
 		return $this->auth;
 	}
-	abstract public function getUsernameLabel();
-			
+
+	public function setGetUserNameInterface(getUserNameInterface $getUserNameInterface){
+		$this->getUserNameInterface=$getUserNameInterface;
+	}
 }
 
 ?>
