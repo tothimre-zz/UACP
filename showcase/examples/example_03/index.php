@@ -19,14 +19,14 @@
  * a full featured authentication module.
  */
 
-	/*
-	 * This lie is essential to get the session started, if you wish use
-	 * captcha support for the authentication process.
-	 */
-	session_start();
-	require 'classes_for_the_example.php';
-	$example = new example_03();
-	$example->show();
+  /*
+   * This lie is essential to get the session started, if you wish use
+   * captcha support for the authentication process.
+   */
+  session_start();
+  require 'classes_for_the_example.php';
+  $example = new example_03();
+  $example->show();
 
 
 ?>

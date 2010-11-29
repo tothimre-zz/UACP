@@ -18,28 +18,28 @@ require_once 'tests/unit/UacpMockFactoryTestCase.php';
 
 class AuthBoxSimpleTest extends UacpMockFactoryTestCase
 {
-	public function testShow()
-	{
+  public function testShow()
+  {
 
-		$getUserNameInterface=$this->GetUserNameInterface($this->getAuthMock());
+    $getUserNameInterface=$this->GetUserNameInterface($this->getAuthMock());
 
-		$auth=$getUserNameInterface->getAuth();
+    $auth=$getUserNameInterface->getAuth();
 
-		$authBox=new AuthBoxSimple($auth,$getUserNameInterface);
+    $authBox=new AuthBoxSimple($auth,$getUserNameInterface);
 
-		$sessionMock=$this->getMockSessionHandler();
-		/*
-		 * This is a must have line if you would test this function because
-		 * the captcha support relies on the session support of the php
-		 */
-		$authBox->setSessionHandler($sessionMock);
-		$sessionMock->session_start();
+    $sessionMock=$this->getMockSessionHandler();
+    /*
+     * This is a must have line if you would test this function because
+     * the captcha support relies on the session support of the php
+     */
+    $authBox->setSessionHandler($sessionMock);
+    $sessionMock->session_start();
 
-		$authBox->setUserDataHandler($this->getMockPostHandler('fooser','badpass'));
-		$login=$authBox->show();
-		$logout=$authBox->show();
+    $authBox->setUserDataHandler($this->getMockPostHandler('fooser','badpass'));
+    $login=$authBox->show();
+    $logout=$authBox->show();
 
-	}
+  }
 
 }
 ?>

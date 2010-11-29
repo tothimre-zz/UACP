@@ -23,26 +23,26 @@
 class AuthBoxSimple extends AuthBoxFromDirectory
 {
 
-	/**
-	 * The constructor expects a TemplateLogout instance because from this
-	 * all the other templates could got the needed information for the
-	 * initialization.
-	 *
-	 * @param TemplateLogout $templateLogout
-	 *
-	 */
-	function __construct(InterfaceAuth $auth, GetUserNameInterface $getUserNameInterface)
-	{
-		parent::__construct($auth,$getUserNameInterface,'AuthBoxSimpleTemplates');
-	}
+  /**
+   * The constructor expects a TemplateLogout instance because from this
+   * all the other templates could got the needed information for the
+   * initialization.
+   *
+   * @param TemplateLogout $templateLogout
+   *
+   */
+  function __construct(InterfaceAuth $auth, GetUserNameInterface $getUserNameInterface)
+  {
+    parent::__construct($auth,$getUserNameInterface,'AuthBoxSimpleTemplates');
+  }
 
-	/**
-	 * this little hack helps to load the default templates
-	 *
-	 * @return boolean
-	 */
-	protected function fileExist(){
-		return true;
-	}
+  /**
+   * this little hack helps to load the default templates
+   *
+   * @return boolean
+   */
+  protected function fileExist(){
+    return true;
+  }
 }
 ?>

@@ -20,52 +20,52 @@ limitations under the License.
  */
 class TemplateLogout extends Template{
 
-	/**
-	 * It is an instance of the InterfaceAuth it is 
-	 *  
-	 * @var InterfaceAuth
-	 */
-	private $auth=null;
+  /**
+   * It is an instance of the InterfaceAuth it is 
+   *  
+   * @var InterfaceAuth
+   */
+  private $auth=null;
 
-	/**
-	 *
-	 * @var GetUserNameInterface
-	 */
-	private $getUserNameInterface=null;
+  /**
+   *
+   * @var GetUserNameInterface
+   */
+  private $getUserNameInterface=null;
 
-	/**
-	 *
-	 * @param string $template
-	 * @param InterfaceAuth $auth
-	 * @param string $handleUrl
-	 * @param GetUserNameInterface $getUserNameInterface
-	 */
-	function __construct($template=null, InterfaceAuth $auth=null, $handleUrl=null, $getUserNameInterface=null){
-		parent::__construct($template,$handleUrl);
-		$this->auth=$auth;
-		if($getUserNameInterface!=null)
-			$this->setGetUserNameInterface($getUserNameInterface);
-	}
-	
-	/**
-	 * Redefines the original function, or extends it by giving more template 
-	 * variables regarding the logout process 
-	 * @see core/templating/Template#getTemplateVars()
-	 */
-	protected function getTemplateVars(){
-		$tmplElements=parent::getTemplateVars();
-		if ($this->getUserNameInterface!=null)
-			$tmplElements[TemplateInterface::USER_NAME_LABEL_INDEX]=$this->getUserNameInterface->getUserName();
-		return $tmplElements;
-	}
+  /**
+   *
+   * @param string $template
+   * @param InterfaceAuth $auth
+   * @param string $handleUrl
+   * @param GetUserNameInterface $getUserNameInterface
+   */
+  function __construct($template=null, InterfaceAuth $auth=null, $handleUrl=null, $getUserNameInterface=null){
+    parent::__construct($template,$handleUrl);
+    $this->auth=$auth;
+    if($getUserNameInterface!=null)
+      $this->setGetUserNameInterface($getUserNameInterface);
+  }
+  
+  /**
+   * Redefines the original function, or extends it by giving more template 
+   * variables regarding the logout process 
+   * @see core/templating/Template#getTemplateVars()
+   */
+  protected function getTemplateVars(){
+    $tmplElements=parent::getTemplateVars();
+    if ($this->getUserNameInterface!=null)
+      $tmplElements[TemplateInterface::USER_NAME_LABEL_INDEX]=$this->getUserNameInterface->getUserName();
+    return $tmplElements;
+  }
 
-	public function getAuth(){
-		return $this->auth;
-	}
+  public function getAuth(){
+    return $this->auth;
+  }
 
-	public function setGetUserNameInterface(getUserNameInterface $getUserNameInterface){
-		$this->getUserNameInterface=$getUserNameInterface;
-	}
+  public function setGetUserNameInterface(getUserNameInterface $getUserNameInterface){
+    $this->getUserNameInterface=$getUserNameInterface;
+  }
 }
 
 ?>

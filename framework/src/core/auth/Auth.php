@@ -25,65 +25,61 @@ limitations under the License.
  * Interface Auth for yourself and us yours, the framework is capable for this.
  *
  */
-abstract class Auth implements InterfaceAuth{
+abstract class Auth implements InterfaceAuth {
 
-	/**
-	 * (non-PHPdoc)
-	 * @see core/auth/InterfaceAuthProcess#getLoginData()
-	 */
-	public function getLoginData()
-	{
-		$authData=$this->getAuthenticatedData();
-		if($authData)
-		{
-			return $authData;
-		}
-		else
-		{
-			return null;
-		}
-	}
+  /**
+   * (non-PHPdoc)
+   * @see core/auth/InterfaceAuthProcess#getLoginData()
+   */
+  public function getLoginData() {
+    $authData=$this->getAuthenticatedData();
+    if($authData)
+    {
+      return $authData;
+    }
+    else
+    {
+      return null;
+    }
+  }
 
-	/**
-	 * (non-PHPdoc)
-	 * @see core/auth/InterfaceAuthProcess#isLoggedIn()
-	 */
-	public function isLoggedIn()
-	{
-		if($this->getLoginData())
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+  /**
+   * (non-PHPdoc)
+   * @see core/auth/InterfaceAuthProcess#isLoggedIn()
+   */
+  public function isLoggedIn() {
+    if($this->getLoginData())
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
 
-	/**
-	 * (non-PHPdoc)
-	 * @see core/auth/InterfaceAuthProcess#logIn($user, $pass)
-	 */
-	public function logIn($user,$pass)
-	{
-		$auth=$this->authenticate($user,$pass);
-		if ($auth)
-		{
-			$this->storeAuthenticatedData($auth);
-		}
-		else
-		{
-			$this->logOut();
-		}
-	}
+  /**
+   * (non-PHPdoc)
+   * @see core/auth/InterfaceAuthProcess#logIn($user, $pass)
+   */
+  public function logIn($user,$pass) {
+    $auth=$this->authenticate($user,$pass);
+    if ($auth)
+    {
+      $this->storeAuthenticatedData($auth);
+    }
+    else
+    {
+      $this->logOut();
+    }
+  }
 
-	/**
-	 * (non-PHPdoc)
-	 * @see core/auth/InterfaceAuthProcess#logOut()
-	 */
-	public function logOut()
-	{
-		$this->storeAuthenticatedData(null);
-	}
+  /**
+   * (non-PHPdoc)
+   * @see core/auth/InterfaceAuthProcess#logOut()
+   */
+  public function logOut() {
+    $this->storeAuthenticatedData(null);
+  }
 }
 ?>

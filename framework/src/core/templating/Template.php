@@ -22,93 +22,93 @@ limitations under the License.
  */
 abstract class Template{
 
-	/**
-	 * In this variable is stored the template. 
-	 * @var string
-	 */
-	protected $template;
-	
-	/**
-	 * The form action is stored here. 
-	 * @var string
-	 */
-	private $handleUrl;
-	
-	/**
-	 * This is the constructor of this class.
-	 *
-	 * @param $template
-	 * It is an optional paramerter and sets the template value, before you
-	 * calling the show() fuction should declare it.
-	 *
-	 * @param $handleUrl
-	 * This variable represents an url for the form action where the
-	 * processing of the sent login or logout data should be taken.
-	 *
-	 * @return none
-	 */
-	function __construct($template=null,$handleUrl=null){
+  /**
+   * In this variable is stored the template. 
+   * @var string
+   */
+  protected $template;
+  
+  /**
+   * The form action is stored here. 
+   * @var string
+   */
+  private $handleUrl;
+  
+  /**
+   * This is the constructor of this class.
+   *
+   * @param $template
+   * It is an optional paramerter and sets the template value, before you
+   * calling the show() fuction should declare it.
+   *
+   * @param $handleUrl
+   * This variable represents an url for the form action where the
+   * processing of the sent login or logout data should be taken.
+   *
+   * @return none
+   */
+  function __construct($template=null,$handleUrl=null){
 
-		$this->setTemplate($template);
-		
-		if ($handleUrl==null){
-			$this->handleUrl=$_SERVER["PHP_SELF"];
-		}
-		else{
-			$this->handleUrl=$handleUrl;
-		}
-	}
-	
-	/**
-	 * This sets the template.
-	 * 
-	 * @param string $template
-	 */
-	public function setTemplate($template){
-		$this->template=$template;
-		
-	}
-	
-	/**
-	 * Gets the url that handles the form of the login.
-	 * 
-	 * @return string
-	 */
-	public function getHandlerUrl(){
-		return $this->handleUrl;
-	}
-	
-	/**
-	 * Gives back the name of the html form input the represents the submit 
-	 * button that sends the page.
-	 * 
-	 * @return sting
-	 */
-	public function getInputSubmitString(){
-		return 'uacp_submit';
-	}
-		
-	/**
-	 * returns an array indexed, by the template strings and the values they 
-	 * should replaced with. 
-	 * 
-	 * @return string
-	 */
-	protected function getTemplateVars(){
-		$tmplElements[TemplateInterface::INPUT_HANDLER_URL_INDEX]=$this->getHandlerUrl();
-		$tmplElements[TemplateInterface::SUBMIT_INDEX_FOR_HTML_FORM_INPUT]=TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT;
-		return $tmplElements;
-	}
-	
-	/**
-	 * Manages the value replcement of the template strings to the valid html
-	 * values.
-	 * 
-	 * @return string
-	 */
-	public function show(){
-		$tpl=$this->template;
-		
+    $this->setTemplate($template);
+    
+    if ($handleUrl==null){
+      $this->handleUrl=$_SERVER["PHP_SELF"];
+    }
+    else{
+      $this->handleUrl=$handleUrl;
+    }
+  }
+  
+  /**
+   * This sets the template.
+   * 
+   * @param string $template
+   */
+  public function setTemplate($template){
+    $this->template=$template;
+    
+  }
+  
+  /**
+   * Gets the url that handles the form of the login.
+   * 
+   * @return string
+   */
+  public function getHandlerUrl(){
+    return $this->handleUrl;
+  }
+  
+  /**
+   * Gives back the name of the html form input the represents the submit 
+   * button that sends the page.
+   * 
+   * @return sting
+   */
+  public function getInputSubmitString(){
+    return 'uacp_submit';
+  }
+    
+  /**
+   * returns an array indexed, by the template strings and the values they 
+   * should replaced with. 
+   * 
+   * @return string
+   */
+  protected function getTemplateVars(){
+    $tmplElements[TemplateInterface::INPUT_HANDLER_URL_INDEX]=$this->getHandlerUrl();
+    $tmplElements[TemplateInterface::SUBMIT_INDEX_FOR_HTML_FORM_INPUT]=TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT;
+    return $tmplElements;
+  }
+  
+  /**
+   * Manages the value replcement of the template strings to the valid html
+   * values.
+   * 
+   * @return string
+   */
+  public function show(){
+    $tpl=$this->template;
+    
 
         foreach($this->getTemplateVars() as $name=>$value) {
 
@@ -116,7 +116,7 @@ abstract class Template{
         }
         
         return $tpl;
-	}
-	
+  }
+  
 }
 ?>

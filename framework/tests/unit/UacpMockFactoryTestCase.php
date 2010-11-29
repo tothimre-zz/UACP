@@ -23,53 +23,53 @@ require_once 'autoload.php';
 class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
 {
 
-	
-	public function getMockPostHandler($user,$pass){
-		return new MockPostHandler($user,$pass);
-	}
-	
-	
-	/**
-	 * This is important because the phpunit cannot handle such built in
-	 * globally accessible variables like  $_SESSION.
-	 *
-	 * @return PhpMockSessionHandler
-	 */
-	public function getMockSessionHandler(){
-		return new MockSessionHandler();
-	}
+  
+  public function getMockPostHandler($user,$pass){
+    return new MockPostHandler($user,$pass);
+  }
+  
+  
+  /**
+   * This is important because the phpunit cannot handle such built in
+   * globally accessible variables like  $_SESSION.
+   *
+   * @return PhpMockSessionHandler
+   */
+  public function getMockSessionHandler(){
+    return new MockSessionHandler();
+  }
 
-	/**
-	 * This function gives back an instance of the MockAuthClass
-	 *
-	 * @return MockAuthClass
-	 *
-	 */
-	public function getAuthMock()
-	{
-		return new MockAuthClass();
-	}
+  /**
+   * This function gives back an instance of the MockAuthClass
+   *
+   * @return MockAuthClass
+   *
+   */
+  public function getAuthMock()
+  {
+    return new MockAuthClass();
+  }
 
-	/*
+  /*
 
 interface GetUserNameInterface {
 
-	public function getUserName();
+  public function getUserName();
 
 }
-	 */
+   */
 
-	public function GetUserNameInterface(InterfaceAuth $auth)
-	{
+  public function GetUserNameInterface(InterfaceAuth $auth)
+  {
 
-		$gi= new MockGetUserNameInterface($auth);
-		$AuthMock=$this->getAuthMock();
-		$params[]=$AuthMock;
-		$params[]='{UsernameLabel}';
-		$params[]='foourl';
+    $gi= new MockGetUserNameInterface($auth);
+    $AuthMock=$this->getAuthMock();
+    $params[]=$AuthMock;
+    $params[]='{UsernameLabel}';
+    $params[]='foourl';
 
-		return $gi;
-	}
+    return $gi;
+  }
 }
 
 /**
@@ -79,52 +79,52 @@ interface GetUserNameInterface {
  *
  */
 class MockSessionHandler implements SessionHandlerInterface{
-	
-	/**
-	 * This variable  represents the session ID.
-	 *
-	 * @var string
-	 */
-	private $sid=null;
+  
+  /**
+   * This variable  represents the session ID.
+   *
+   * @var string
+   */
+  private $sid=null;
 
-	/**
-	 * This variable  represents the session.
-	 *
-	 * @var string
-	 */
-	private $session;
+  /**
+   * This variable  represents the session.
+   *
+   * @var string
+   */
+  private $session;
 
-	public function session_id(){
-		return $this->sid;
-	}
+  public function session_id(){
+    return $this->sid;
+  }
 
 
-	/**
-	 * (non-PHPdoc)
-	 * @see core/templating/PhpSessionHandlerInerface#session_start()
-	 */
-	public function session_start(){
-		$this->sid='1';
-	}
+  /**
+   * (non-PHPdoc)
+   * @see core/templating/PhpSessionHandlerInerface#session_start()
+   */
+  public function session_start(){
+    $this->sid='1';
+  }
 
-		public function setValue($index,$value){
-		$this->session[$index]=$value;
-	}
+    public function setValue($index,$value){
+    $this->session[$index]=$value;
+  }
 
-	/**
-	 * (non-PHPdoc)
-	 * @see core/templating/PhpSessionHandlerInerface#getValue($index)
-	 */
-	public function getValue($index){
+  /**
+   * (non-PHPdoc)
+   * @see core/templating/PhpSessionHandlerInerface#getValue($index)
+   */
+  public function getValue($index){
 
-		if(isset($this->session[$index])){
-			return $this->session[$index];
-		}
-		else
-		{
-			return null;
-		}
-	}
+    if(isset($this->session[$index])){
+      return $this->session[$index];
+    }
+    else
+    {
+      return null;
+    }
+  }
 
 }
 /**
@@ -135,74 +135,74 @@ class MockSessionHandler implements SessionHandlerInterface{
  */
 class MockAuthClass extends Auth
 {
-	private $userInfo=null;
+  private $userInfo=null;
 
-	public function authenticate($user, $pass)
+  public function authenticate($user, $pass)
 
-	{
-		if($user=='fooser' && $pass=='foopass')
-		{
-			return'fooser';
-		}
-		else
-		{
-			return null;
-		}
-	}
+  {
+    if($user=='fooser' && $pass=='foopass')
+    {
+      return'fooser';
+    }
+    else
+    {
+      return null;
+    }
+  }
 
-	public function getAuthenticatedData()
-	{
-		return $this->userInfo;
-	}
+  public function getAuthenticatedData()
+  {
+    return $this->userInfo;
+  }
 
-	public function storeAuthenticatedData($data)
-	{
-		$this->userInfo=$data;
-	}
+  public function storeAuthenticatedData($data)
+  {
+    $this->userInfo=$data;
+  }
 }
 
 class MockPostHandler implements GlobalHandlerInterface{
 
-	public $test=true;
-	private $post;
-	function __construct($user,$pass){
-		$this->setValue('uacp_user',$user);
-		$this->setValue('uacp_pass',$pass);
-	}
-	
-		
-	public function setValue($index,$value){
-		$this->post[$index]=$value;
-	}
+  public $test=true;
+  private $post;
+  function __construct($user,$pass){
+    $this->setValue('uacp_user',$user);
+    $this->setValue('uacp_pass',$pass);
+  }
+  
+    
+  public function setValue($index,$value){
+    $this->post[$index]=$value;
+  }
 
-	public function getValue($index){
-		if(isset($this->post[$index])){
-			return $this->post[$index];
-		}
-		else{
-			return null;
-		}
-	}
+  public function getValue($index){
+    if(isset($this->post[$index])){
+      return $this->post[$index];
+    }
+    else{
+      return null;
+    }
+  }
 }
 
 class MockGetUserNameInterface implements GetUserNameInterface{
 
-	/**
-	 *
-	 * @var InterfaceAuth
-	 */
-	var $auth;
+  /**
+   *
+   * @var InterfaceAuth
+   */
+  var $auth;
 
-	function  __construct(InterfaceAuth $auth){
-		$this->auth=$auth;
-	}
+  function  __construct(InterfaceAuth $auth){
+    $this->auth=$auth;
+  }
 
-	function getUserName(){
-		return $this->auth->getAuthenticatedData();
-	}
+  function getUserName(){
+    return $this->auth->getAuthenticatedData();
+  }
 
-	function getAuth(){
-		return $this->auth;
-	}
+  function getAuth(){
+    return $this->auth;
+  }
 }
 ?>

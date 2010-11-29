@@ -24,33 +24,33 @@
 
 abstract class AuthBoxProto extends AuthTemplate
 {
-	/**
-	 *
-	 * @var InterfaceAuth
-	 */
-	protected $auth=null;
+  /**
+   *
+   * @var InterfaceAuth
+   */
+  protected $auth=null;
 
-	/**
-	 * The constructor expects a TemplateLogout instance because from this
-	 * all the other templates could got the needed information for the
-	 * initialistation.
-	 *
-	 * @param InterfaceAuth $auth
-	 * @param GetUserNameInterface $getUserNameInterface
-	 *
-	 */
-	function __construct(InterfaceAuth $auth, $getUserNameInterface=null)
-	{
-		/*
-		 * This initializes the templates without exact template strings.
-		 */
-		$this->auth=$auth;
-		$templateLogout=new TemplateLogout(null,$auth,null,$getUserNameInterface);
-		$templateLogin=new TemplateLogin();
-		$templateLoginCaptcha=new TemplateLoginCaptcha();
-		
-		parent::__construct($templateLogout, $templateLogin, $templateLoginCaptcha, 3);
-	}
+  /**
+   * The constructor expects a TemplateLogout instance because from this
+   * all the other templates could got the needed information for the
+   * initialistation.
+   *
+   * @param InterfaceAuth $auth
+   * @param GetUserNameInterface $getUserNameInterface
+   *
+   */
+  function __construct(InterfaceAuth $auth, $getUserNameInterface=null)
+  {
+    /*
+     * This initializes the templates without exact template strings.
+     */
+    $this->auth=$auth;
+    $templateLogout=new TemplateLogout(null,$auth,null,$getUserNameInterface);
+    $templateLogin=new TemplateLogin();
+    $templateLoginCaptcha=new TemplateLoginCaptcha();
+    
+    parent::__construct($templateLogout, $templateLogin, $templateLoginCaptcha, 3);
+  }
 
 }
 ?>

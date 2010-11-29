@@ -11,10 +11,10 @@ require '../../../framework/autoload.php';
 
 class MyGetUserNameInterface implements GetUserNameInterface
 {
-	public function getUserName()
-	{
-		return $_SESSION['UACP_USER_DATA'];
-	}
+  public function getUserName()
+  {
+    return $_SESSION['UACP_USER_DATA'];
+  }
 }
 
 /**
@@ -24,35 +24,35 @@ class MyGetUserNameInterface implements GetUserNameInterface
 class MyAuthClass extends Auth
 {
 
-	public function authenticate($user, $pass)
+  public function authenticate($user, $pass)
 
-	{
-		if($user=='fooser' && $pass=='foopass')
-		{
-			return'fooser';
-		}
-		else
-		{
-			return null;
-		}
-	}
+  {
+    if($user=='fooser' && $pass=='foopass')
+    {
+      return'fooser';
+    }
+    else
+    {
+      return null;
+    }
+  }
 
-	public function getAuthenticatedData()
-	{
+  public function getAuthenticatedData()
+  {
                 if(isset($_SESSION['UACP_USER_DATA']))
                 {
-		   return $_SESSION['UACP_USER_DATA'];
+       return $_SESSION['UACP_USER_DATA'];
                 }
                 else
                 {
                   return null;
                 }
-	}
+  }
 
-	public function storeAuthenticatedData($data)
-	{
-		$_SESSION['UACP_USER_DATA']=$data;
-	}
+  public function storeAuthenticatedData($data)
+  {
+    $_SESSION['UACP_USER_DATA']=$data;
+  }
 
 }
 
@@ -63,27 +63,27 @@ class MyAuthClass extends Auth
  */
 class example_02
 {
-	private $myAuthBox;
+  private $myAuthBox;
 
-	/*
-	 *
-	 */
-	function __construct()
-	{
-		$auth=new MyAuthClass();
-		$myGetUserNameInterface=new MyGetUserNameInterface();
-		$this->myAuthBox=new AuthBoxFromDirectory($auth,$myGetUserNameInterface,"templates");
-	}
+  /*
+   *
+   */
+  function __construct()
+  {
+    $auth=new MyAuthClass();
+    $myGetUserNameInterface=new MyGetUserNameInterface();
+    $this->myAuthBox=new AuthBoxFromDirectory($auth,$myGetUserNameInterface,"templates");
+  }
 
-	/*
-	 * A simple wrapper for the $this->myAuthBox->show() function. The only
-	 * difference is that this function not gives back it's contents but prints
-	 * that.
-	 */
-	function show()
-	{
-		echo $this->myAuthBox->show();
-	}
+  /*
+   * A simple wrapper for the $this->myAuthBox->show() function. The only
+   * difference is that this function not gives back it's contents but prints
+   * that.
+   */
+  function show()
+  {
+    echo $this->myAuthBox->show();
+  }
 
 }
 ?>

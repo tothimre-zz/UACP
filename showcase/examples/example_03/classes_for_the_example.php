@@ -11,10 +11,10 @@ include '../../common/config.php';
 
 class MyGetUserNameInterface implements GetUserNameInterface
 {
-	public function getUserName()
-	{
-		return $_SESSION['UACP_USER_DATA'];
-	}
+  public function getUserName()
+  {
+    return $_SESSION['UACP_USER_DATA'];
+  }
 }
 
 /**
@@ -24,35 +24,35 @@ class MyGetUserNameInterface implements GetUserNameInterface
 class MyAuthClass extends Auth
 {
 
-	public function authenticate($user, $pass)
+  public function authenticate($user, $pass)
 
-	{
-		if($user=='fooser' && $pass=='foopass')
-		{
-			return'fooser';
-		}
-		else
-		{
-			return null;
-		}
-	}
+  {
+    if($user=='fooser' && $pass=='foopass')
+    {
+      return'fooser';
+    }
+    else
+    {
+      return null;
+    }
+  }
 
-	public function getAuthenticatedData()
-	{
-                if(isset($_SESSION['UACP_USER_DATA']))
-                {
-					return $_SESSION['UACP_USER_DATA'];
-                }
-                else
-                {
-					return null;
-                }
-	}
+  public function getAuthenticatedData()
+  {
+      if(isset($_SESSION['UACP_USER_DATA']))
+      {
+        return $_SESSION['UACP_USER_DATA'];
+      }
+       else
+       {
+         return null;
+       }
+  }
 
-	public function storeAuthenticatedData($data)
-	{
-		$_SESSION['UACP_USER_DATA']=$data;
-	}
+  public function storeAuthenticatedData($data)
+  {
+    $_SESSION['UACP_USER_DATA']=$data;
+  }
 
 }
 
@@ -63,29 +63,29 @@ class MyAuthClass extends Auth
  */
 class example_03
 {
-	/**
-	 *
-	 * @var AuthBoxFromDirectory
-	 */
-	private $myAuthBox;
+  /**
+   *
+   * @var AuthBoxFromDirectory
+   */
+  private $myAuthBox;
 
-	function __construct()
-	{
-		$auth=new MyAuthClass();
-		$aa=new MyGetUserNameInterface();
-		$this->myAuthBox=new AuthBoxFromDirectory($auth,$aa,'templates');
-		$this->myAuthBox->setAfterLoginUrl(EXAMPLE_BASE_URL.'example_03/logout.php');
-		$this->myAuthBox->setLogoutUrl(EXAMPLE_BASE_URL.'example_03/index.php');
-	}
+  function __construct()
+  {
+    $auth=new MyAuthClass();
+    $aa=new MyGetUserNameInterface();
+    $this->myAuthBox=new AuthBoxFromDirectory($auth,$aa,'templates');
+    $this->myAuthBox->setAfterLoginUrl(EXAMPLE_BASE_URL.'example_03/logout.php');
+    $this->myAuthBox->setLogoutUrl(EXAMPLE_BASE_URL.'example_03/index.php');
+  }
 
-	public function getMyAuthBox(){
-		return $this->myAuthBox;
-	}
-	
-	function show()
-	{
-		echo $this->myAuthBox->show();
-	}
+  public function getMyAuthBox(){
+    return $this->myAuthBox;
+  }
+  
+  function show()
+  {
+    echo $this->myAuthBox->show();
+  }
 
 }
 ?>

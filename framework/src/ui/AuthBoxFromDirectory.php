@@ -16,27 +16,27 @@
 
 class AuthBoxFromDirectory extends AuthBoxFromTemplateFiles
 {
-	const LOGIN='login.tpl';
-	const LOGOUT='logout.tpl';
-	const LOGIN_CAPTCHA='login_captcha.tpl';
+  const LOGIN='login.tpl';
+  const LOGOUT='logout.tpl';
+  const LOGIN_CAPTCHA='login_captcha.tpl';
 
-	/**
-	 * The constructor expects a TemplateLogout instance because from this
-	 * all the other templates could got the needed information for the
-	 * initialization.
-	 *
-	 * @param InterfaceAuth $auth
-	 * @param $directory
-	 *
-	 */
-	function __construct(InterfaceAuth $auth, $getUserNameInterface=null,$directory)
-	{
-		parent::__construct($auth,$getUserNameInterface);
-		$this->setLoginTemplateFormFile($directory.'/'.self::LOGIN);
-		$this->setLogoutTemplateFromFile($directory.'/'.self::LOGOUT);
-		$this->setLoginCaptchaTemplateFromFile($directory.'/'.self::LOGIN_CAPTCHA);
+  /**
+   * The constructor expects a TemplateLogout instance because from this
+   * all the other templates could got the needed information for the
+   * initialization.
+   *
+   * @param InterfaceAuth $auth
+   * @param $directory
+   *
+   */
+  function __construct(InterfaceAuth $auth, $getUserNameInterface=null,$directory)
+  {
+    parent::__construct($auth,$getUserNameInterface);
+    $this->setLoginTemplateFormFile($directory.'/'.self::LOGIN);
+    $this->setLogoutTemplateFromFile($directory.'/'.self::LOGOUT);
+    $this->setLoginCaptchaTemplateFromFile($directory.'/'.self::LOGIN_CAPTCHA);
 
-	}
+  }
 }
 
 ?>

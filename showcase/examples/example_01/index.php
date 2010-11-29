@@ -19,20 +19,19 @@
  * a full featured authentication module.
  */
 
-	/*
-	 * This lie is essential to get the session started, if you wish use
-	 * captcha support for the authentication process.
-	 */
-	session_start();
-	require 'classes_for_the_example.php';
+  /*
+   * This lie is essential to get the session started, if you wish use
+   * captcha support for the authentication process.
+   */
+  session_start();
+  require 'classes_for_the_example.php';
 
         include "page_elements/head.tpl";
-	/*
-	 * Yes authentication can be done in such an easy way too.
-	 */
-	$example = new example_01();
-	$example->show();
-
-        include "page_elements/footer.tpl";
+  /*
+   * Yes authentication can be done in such an easy way too.
+   */
+  $example = new example_01();
+  $example->show();
+  include "page_elements/footer.tpl";
 
 ?>

@@ -1,10 +1,10 @@
 You can log in like this
-	Username:fooser
-	Password:foopass
+  Username:fooser
+  Password:foopass
 
 This Example is a start point to the UACP framework. This example uses the 
 built in default template of this package.
-	
+  
 If you reload or fail the login three times the captcha authentication is 
 required to pass the authentication process.
 
@@ -12,18 +12,18 @@ required to pass the authentication process.
 The directory structure you see:
 
 page_elemets
-	The folder contains a minimal mock for putting this demo into a
-	templating context.
+  The folder contains a minimal mock for putting this demo into a
+  templating context.
 
 README
-	This file itself.
-	
+  This file itself.
+  
 classes_for_theExample.php
-	This file contains the classes needed to be implemented for the 
-	authentication.
+  This file contains the classes needed to be implemented for the 
+  authentication.
 
 Index.php
-	This file contains the authentication action.
+  This file contains the authentication action.
 
 style.css
-	This is a possible styleng for the AuthBoxSimple class.
+  This is a possible styleng for the AuthBoxSimple class.

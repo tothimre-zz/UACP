@@ -20,28 +20,27 @@ limitations under the License.
  */
 class TemplateLogin extends Template{
 
-	/**
-	 * Redefines the original function, or extends it by giving more template 
-	 * variables regarding the login process 
-	 * @see core/templating/Template#getTemplateVars()
-	 */
-	protected function getTemplateVars(){
-		$tmplElements=parent::getTemplateVars();
-		$tmplElements[TemplateInterface::USER_NAME_INDEX_FOR_HTML_FORM_INPUT]=TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT;
-		$tmplElements[TemplateInterface::USER_PASS_INDEX_FOR_HTML_FORM_INPUT]=TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT;
-		return $tmplElements;
-	}
+  /**
+   * Redefines the original function, or extends it by giving more template 
+   * variables regarding the login process 
+   * @see core/templating/Template#getTemplateVars()
+   */
+  protected function getTemplateVars(){
+    $tmplElements=parent::getTemplateVars();
+    $tmplElements[TemplateInterface::USER_NAME_INDEX_FOR_HTML_FORM_INPUT]=TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT;
+    $tmplElements[TemplateInterface::USER_PASS_INDEX_FOR_HTML_FORM_INPUT]=TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT;
+    return $tmplElements;
+  }
 
-	public function show(){
+  public function show(){
 
-		if($this->template==null){
-			throw new Exception('Please define the template by using the 
-								 setTemplate() function of this class or bassing
-								 it to it\'s constructor');
-		}
-		return parent::show();
-	}
-			
+    if($this->template==null){
+      throw new Exception('Please define the template by using the 
+                 setTemplate() function of this class or bassing
+                 it to it\'s constructor');
+    }
+    return parent::show();
+  }
 }
 
 ?>

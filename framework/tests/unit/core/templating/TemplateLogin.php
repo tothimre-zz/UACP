@@ -22,16 +22,16 @@ require_once 'tests/unit/UacpMockFactoryTestCase.php';
  */
 class TemplateTest extends UacpMockFactoryTestCase
 {
-	public function testShow()
-	{
-		$tpl='{InputSubmitString}{UsernameInputString}{PasswordInputString}{HandlerUrl}';
-		
-		$TemplateLogin=new TemplateLogin($tpl,'testurl');
-		
-		$this->assertTrue($tpl!=$TemplateLogin->show());
-		$this->assertTrue((strpos($TemplateLogin->show(),'{')==false));
-		$this->assertTrue((strpos($TemplateLogin->show(),'}')==false));
-		
-	}	
+  public function testShow()
+  {
+    $tpl='{InputSubmitString}{UsernameInputString}{PasswordInputString}{HandlerUrl}';
+    
+    $TemplateLogin=new TemplateLogin($tpl,'testurl');
+    
+    $this->assertTrue($tpl!=$TemplateLogin->show());
+    $this->assertTrue((strpos($TemplateLogin->show(),'{')==false));
+    $this->assertTrue((strpos($TemplateLogin->show(),'}')==false));
+    
+  }  
 }
 ?>

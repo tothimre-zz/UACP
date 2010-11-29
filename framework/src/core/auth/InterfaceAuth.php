@@ -22,9 +22,6 @@
  * and make an instance of it.
  *
  */
-interface  InterfaceAuth extends InterfaceAuthDataSource,InterfaceAuthProcess
-{
-
+interface  InterfaceAuth extends InterfaceAuthDataSource,InterfaceAuthProcess {
 }
-
 ?>

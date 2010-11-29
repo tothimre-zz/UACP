@@ -20,48 +20,46 @@ limitations under the License.
  */
 interface InterfaceAuthDataSource
 {
-	/**
-	 * This function represents the authentication, it needs a user name and
-	 * a password. You are free to stool this function to your needs.
-	 *
-	 * For example if you would authenticate against an AD domain or just simply
-	 * a database you can do it here.
-	 *
-	 * @param String $name
-	 * The identifier of the user.
-	 *
-	 * @param String $pass
-	 * The password of the user
-	 *
-	 * @return mixed
-	 * This is an important part of the concept if you wish can only give back
-	 * a string that describes the user or just gives back the first parameter
-	 * of this function. You can give more detailed information about the user
-	 * if you would show more information on various parts of your application
-	 * about it it is your choice so feel free to store what you want.
-	 */
-	public function authenticate($name, $pass);
+  /**
+   * This function represents the authentication, it needs a user name and
+   * a password. You are free to stool this function to your needs.
+   *
+   * For example if you would authenticate against an AD domain or just simply
+   * a database you can do it here.
+   *
+   * @param String $name
+   * The identifier of the user.
+   *
+   * @param String $pass
+   * The password of the user
+   *
+   * @return mixed
+   * This is an important part of the concept if you wish can only give back
+   * a string that describes the user or just gives back the first parameter
+   * of this function. You can give more detailed information about the user
+   * if you would show more information on various parts of your application
+   * about it it is your choice so feel free to store what you want.
+   */
+  public function authenticate($name, $pass);
 
-	/**
-	 * Gives back any kind of data if the user is authenticated, else nothing.
-	 * it depends on your implementation how and what you store here. It is
-	 * recommended to store user related data here, or something that is
-	 * related to that, but feel free to make it work the way that serves
-	 * better your purposes.
+  /**
+   * Gives back any kind of data if the user is authenticated, else nothing.
+   * it depends on your implementation how and what you store here. It is
+   * recommended to store user related data here, or something that is
+   * related to that, but feel free to make it work the way that serves
+   * better your purposes.
 
-	 * @return mixed
-	 *
-	 */
-	public function getAuthenticatedData();
+   * @return mixed
+   *
+   */
+  public function getAuthenticatedData();
 
-	/**
-	 * Stores the authentication results if succeeded.
-	 *
-	 * @param String $data
-	 * @return none
-	 */
-	public function storeAuthenticatedData($data);
-
-
+  /**
+   * Stores the authentication results if succeeded.
+   *
+   * @param String $data
+   * @return none
+   */
+  public function storeAuthenticatedData($data);
 }
 ?>
