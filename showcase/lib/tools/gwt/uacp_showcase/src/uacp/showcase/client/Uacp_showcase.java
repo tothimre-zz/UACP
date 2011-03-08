@@ -53,7 +53,7 @@ public class Uacp_showcase implements EntryPoint,ShowcaseCommon {
 				while(iter.hasNext()){
 					addToTree(jso.get(iter.next()).isString().stringValue());
 				}
-				tree.setSelectedItem(tree.getItem(0));
+				tree.setSelectedItem(tree.getItem(2));
 			}
 		}
 		
