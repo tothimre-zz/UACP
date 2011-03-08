@@ -18,8 +18,7 @@ limitations under the License.
  * This interface Is the most important thing to understand in the system
  * The core abstraction that makes it reusable is hidden below
  */
-interface InterfaceAuthDataSource
-{
+interface InterfaceAuthDataSource{
   /**
    * This function represents the authentication, it needs a user name and
    * a password. You are free to stool this function to your needs.

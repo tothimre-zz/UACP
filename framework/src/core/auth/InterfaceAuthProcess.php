@@ -14,8 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-interface InterfaceAuthProcess
-{
+interface InterfaceAuthProcess{
 
   /**
    * Checks whether the current user is authenticated or not, if it is logged

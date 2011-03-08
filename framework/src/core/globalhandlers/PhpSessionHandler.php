@@ -33,8 +33,7 @@ class PhpSessionHandler implements SessionHandlerInterface{
 			if(!headers_sent()){
 				session_start();
 			}
-			else
-			{
+			else{
 				throw new Exception("If you would use the PHpSessionHandler in your Instance of AuthTemplate please start the php session before you send the headers!!");
 			}
 		}
@@ -48,8 +47,7 @@ class PhpSessionHandler implements SessionHandlerInterface{
 		$this->sessionCheck();
 		if(isset($_SESSION[$index])){
 			return $_SESSION[$index];
-		}
-		else{
+		}else{
 			return null;
 		}
 	}

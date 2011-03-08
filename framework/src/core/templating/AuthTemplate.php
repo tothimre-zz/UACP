@@ -19,8 +19,7 @@
  * The purpose if this class is to give back a html login box.
  *
  */
-class AuthTemplate
-{
+class AuthTemplate{
   private $afterLoginUrl=null;
   private $logoutUrl=null;
 
@@ -79,8 +78,8 @@ class AuthTemplate
    *
    * @return none
    */
-  function __construct(TemplateLogout $logOut,TemplateLogin $logIn,TemplateLoginCaptcha $logInCaptcha=null,$beforeCaptcha=3)
-  {
+  function __construct(TemplateLogout $logOut,TemplateLogin $logIn,
+                      TemplateLoginCaptcha $logInCaptcha=null,$beforeCaptcha=3){
     $this->templateLogIn=$logIn;
     $this->templateLogOut=$logOut;
     $this->templateLogInCaptcha=$logInCaptcha;
@@ -89,17 +88,17 @@ class AuthTemplate
     $this->setUserDataHandler(new PhpPostHandler());
     $this->setGetHandler(new PhpGetHandler());
 
-    if($this->phpGetDataHandler->getValue(self::LOGOUT_STRING))
-         {
-        if($this->templateLogOut->getAuth()->isLoggedIn()){
-          $this->logout();
-        }
+    if($this->phpGetDataHandler->getValue(self::LOGOUT_STRING)){
+      if($this->templateLogOut->getAuth()->isLoggedIn()){
+        $this->logout();
       }
+    }
   }
 
   public function getAfterLoginUrl(){
     return $this->afterLoginUrl;
   }
+  
   public function getLogoutUrl(){
     return $this->logoutUrl.'?logout=1';
   }
@@ -156,16 +155,13 @@ class AuthTemplate
             if(!$this->getTemplateLogOut()->getAuth()->isLoggedIn()){
               $this->redirectToLogoutUrl();
             }
-        }
-
-      }else{
-        if(!$this->getTemplateLogOut()->getAuth()->isLoggedIn()
-                ){
+          }
+        }else{
+          if(!$this->getTemplateLogOut()->getAuth()->isLoggedIn()){
               $this->redirectToLogoutUrl();
             }
-        else if($this->getTemplateLogOut()->getAuth()->isLoggedIn()) {
+          else if($this->getTemplateLogOut()->getAuth()->isLoggedIn()) {
           $this->redirectToAfterLogin();
-
         }
       }
     }
@@ -175,8 +171,7 @@ class AuthTemplate
    *
    * @return String
    */
-  private function handleUserValues()
-  {
+  private function handleUserValues(){
 
     if($this->templateLogOut->getAuth()->isLoggedIn()
       &&
@@ -185,13 +180,9 @@ class AuthTemplate
       !$this->userDataHandler->getValue(TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT)
       &&
       $this->userDataHandler->getValue(TemplateInterface::SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT)
-      
-      )
-    {
+      ){
       $this->logout();
-    }
-    else
-    {
+    }else{
       if($this->userDataHandler->getValue(TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT)){
         $user=$this->userDataHandler->getValue(TemplateInterface::USER_NAME_VALUE_FOR_HTML_FORM_INPUT);
       }
@@ -200,7 +191,6 @@ class AuthTemplate
         $pass=$this->userDataHandler->getValue(TemplateInterface::USER_PASS_VALUE_FOR_HTML_FORM_INPUT);
       }
       if(!empty($user)&&!empty($pass)){
-
         if($this->sessionHandler->getValue(TemplateInterface::CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT)<=$this->beforeCaptcha-1){
           $this->templateLogOut->getAuth()->logIn($user,$pass);
               if($this->templateLogOut->getAuth()->isLoggedIn()

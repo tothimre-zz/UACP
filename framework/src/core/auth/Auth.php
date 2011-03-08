@@ -33,12 +33,9 @@ abstract class Auth implements InterfaceAuth {
    */
   public function getLoginData() {
     $authData=$this->getAuthenticatedData();
-    if($authData)
-    {
+    if($authData){
       return $authData;
-    }
-    else
-    {
+    }else{
       return null;
     }
   }
@@ -48,12 +45,10 @@ abstract class Auth implements InterfaceAuth {
    * @see core/auth/InterfaceAuthProcess#isLoggedIn()
    */
   public function isLoggedIn() {
-    if($this->getLoginData())
-    {
+    if($this->getLoginData()){
       return true;
     }
-    else
-    {
+    else{
       return false;
     }
   }
@@ -62,14 +57,12 @@ abstract class Auth implements InterfaceAuth {
    * (non-PHPdoc)
    * @see core/auth/InterfaceAuthProcess#logIn($user, $pass)
    */
-  public function logIn($user,$pass) {
+  public function logIn($user,$pass){
     $auth=$this->authenticate($user,$pass);
-    if ($auth)
-    {
+    if ($auth){
       $this->storeAuthenticatedData($auth);
     }
-    else
-    {
+    else{
       $this->logOut();
     }
   }
