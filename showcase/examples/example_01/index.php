@@ -26,12 +26,12 @@
   session_start();
   require 'classes_for_the_example.php';
 
-        include "page_elements/head.tpl";
+        include 'page_elements/head.tpl';
   /*
    * Yes authentication can be done in such an easy way too.
    */
   $example = new example_01();
   $example->show();
-  include "page_elements/footer.tpl";
+  include 'page_elements/footer.tpl';
 
 ?>

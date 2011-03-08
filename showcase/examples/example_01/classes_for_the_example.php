@@ -5,10 +5,8 @@
  */
 require '../../../framework/autoload.php';
 
-class MyGetUserNameInterface implements GetUserNameInterface
-{
-  public function getUserName()
-  {
+class MyGetUserNameInterface implements GetUserNameInterface{
+  public function getUserName(){
     return $_SESSION['UACP_USER_DATA'];
   }
 }
@@ -17,39 +15,27 @@ class MyGetUserNameInterface implements GetUserNameInterface
  * Extending the auth class means defining your remaining functions
  *
  */
-class MyAuthClass extends Auth
-{
-
-  public function authenticate($user, $pass)
-
-  {
-    if($user=='fooser' && $pass=='foopass')
-    {
+class MyAuthClass extends Auth{
+  public function authenticate($user, $pass){
+    if($user=='fooser' && $pass=='foopass'){
       return'fooser';
-    }
-    else
-    {
+    } else {
       return null;
     }
   }
 
-  public function getAuthenticatedData()
-  {
-                if(isset($_SESSION['UACP_USER_DATA']))
-                {
-          return $_SESSION['UACP_USER_DATA'];
-                }
-                else
-                {
-          return null;
-                }
+  public function getAuthenticatedData(){
+    if(isset($_SESSION['UACP_USER_DATA'])){
+      return $_SESSION['UACP_USER_DATA'];
+    }
+    else{
+      return null;
+    }
   }
 
-  public function storeAuthenticatedData($data)
-  {
+  public function storeAuthenticatedData($data){
     $_SESSION['UACP_USER_DATA']=$data;
   }
-
 }
 
 /**
@@ -57,13 +43,8 @@ class MyAuthClass extends Auth
  * composition
  *
  */
-class example_01
-{
+class example_01{
   private $myAuthBox;
-
-  /*
-   *
-   */
   function __construct()
   {
     $auth=new MyAuthClass();
@@ -80,6 +61,5 @@ class example_01
   {
     echo $this->myAuthBox->show();
   }
-
 }
 ?>

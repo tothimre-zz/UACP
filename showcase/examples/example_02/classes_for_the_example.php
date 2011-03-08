@@ -9,10 +9,8 @@ require '../../../framework/autoload.php';
  * Implementing of getting the "String" value  of the user.
  */
 
-class MyGetUserNameInterface implements GetUserNameInterface
-{
-  public function getUserName()
-  {
+class MyGetUserNameInterface implements GetUserNameInterface{
+  public function getUserName(){
     return $_SESSION['UACP_USER_DATA'];
   }
 }
@@ -21,39 +19,29 @@ class MyGetUserNameInterface implements GetUserNameInterface
  * Extending the auth class means defining your remaining functions
  *
  */
-class MyAuthClass extends Auth
-{
+class MyAuthClass extends Auth{
 
-  public function authenticate($user, $pass)
-
-  {
-    if($user=='fooser' && $pass=='foopass')
-    {
+  public function authenticate($user, $pass){
+    if($user=='fooser' && $pass=='foopass'){
       return'fooser';
     }
-    else
-    {
+    else{
       return null;
     }
   }
 
-  public function getAuthenticatedData()
-  {
-                if(isset($_SESSION['UACP_USER_DATA']))
-                {
-       return $_SESSION['UACP_USER_DATA'];
-                }
-                else
-                {
-                  return null;
-                }
+  public function getAuthenticatedData(){
+    if(isset($_SESSION['UACP_USER_DATA'])){
+      return $_SESSION['UACP_USER_DATA'];
+    }
+    else{
+      return null;
+    }
   }
 
-  public function storeAuthenticatedData($data)
-  {
+  public function storeAuthenticatedData($data){
     $_SESSION['UACP_USER_DATA']=$data;
   }
-
 }
 
 /**
@@ -61,18 +49,17 @@ class MyAuthClass extends Auth
  * composition
  *
  */
-class example_02
-{
+class example_02{
+  
   private $myAuthBox;
 
   /*
    *
    */
-  function __construct()
-  {
+  function __construct(){
     $auth=new MyAuthClass();
     $myGetUserNameInterface=new MyGetUserNameInterface();
-    $this->myAuthBox=new AuthBoxFromDirectory($auth,$myGetUserNameInterface,"templates");
+    $this->myAuthBox=new AuthBoxFromDirectory($auth,$myGetUserNameInterface,'templates');
   }
 
   /*
@@ -80,8 +67,7 @@ class example_02
    * difference is that this function not gives back it's contents but prints
    * that.
    */
-  function show()
-  {
+  function show(){
     echo $this->myAuthBox->show();
   }
 

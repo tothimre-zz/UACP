@@ -28,11 +28,11 @@
   /*
    * Yes authentication can be done in such an easy way too.
    */
-        include "page_elements/head.tpl";
+        include 'page_elements/head.tpl';
   /*
    * Yes authentication can be done in such an easy way too.
    */
   $example = new example_02();
   $example->show();
-  include "page_elements/footer.tpl";
+  include 'page_elements/footer.tpl';
 ?>
