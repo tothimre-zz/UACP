@@ -11,7 +11,7 @@ Uacp stands for Universal Authentication component For PHP(5)
 The aim of this project is to create an easy to (re)use authentication component for PHP applications.
 
 You can see how it works at:
-[UACP show case](http://uacp.vacau.com/showcase/lib/tools/gwt/uacp_showcase/war/Uacp_showcase.html)
+[UACP show case](http://94.199.180.170/uacp/showcase/lib/tools/gwt/uacp_showcase/war/Uacp_showcase.html)
 
 ## The guiding principles of the project
 
