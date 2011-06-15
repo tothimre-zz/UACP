@@ -14,7 +14,13 @@
    limitations under the License.
    */
 
-require_once 'autoload.php';
+$unittesting=1;
+require_once 'framework/autoload.php';
+
+use Uacp\Core\Globalhandlers\SessionhandlerInterface;
+use Uacp\Core\Globalhandlers\GlobalhandlerInterface;
+use Uacp\Core\Auth\Auth;
+use Uacp\Core\Templating\GetUserNameInterface;
 
 /**
  * This class simple gives mock objects for testing purposes.
@@ -23,12 +29,10 @@ require_once 'autoload.php';
 class UacpMockFactoryTestCase extends PHPUnit_Framework_TestCase
 {
 
-  
   public function getMockPostHandler($user,$pass){
     return new MockPostHandler($user,$pass);
   }
-  
-  
+
   /**
    * This is important because the phpunit cannot handle such built in
    * globally accessible variables like  $_SESSION.
@@ -59,7 +63,7 @@ interface GetUserNameInterface {
 }
    */
 
-  public function GetUserNameInterface(InterfaceAuth $auth)
+  public function GetUserNameInterface($auth)
   {
 
     $gi= new MockGetUserNameInterface($auth);
@@ -193,7 +197,7 @@ class MockGetUserNameInterface implements GetUserNameInterface{
    */
   var $auth;
 
-  function  __construct(InterfaceAuth $auth){
+  function  __construct($auth){
     $this->auth=$auth;
   }
 

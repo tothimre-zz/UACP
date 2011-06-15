@@ -14,6 +14,8 @@
    limitations under the License.
    */
 
+namespace Uacp\Ui;
+
 class AuthBoxFromDirectory extends AuthBoxFromTemplateFiles
 {
   const LOGIN='login.tpl';
@@ -29,9 +31,9 @@ class AuthBoxFromDirectory extends AuthBoxFromTemplateFiles
    * @param $directory
    *
    */
-  function __construct(InterfaceAuth $auth, $getUserNameInterface=null,$directory)
+  function __construct($InterfaceAuth, $getUserNameInterface=null,$directory)
   {
-    parent::__construct($auth,$getUserNameInterface);
+    parent::__construct($InterfaceAuth, $getUserNameInterface);
     $this->setLoginTemplateFormFile($directory.'/'.self::LOGIN);
     $this->setLogoutTemplateFromFile($directory.'/'.self::LOGOUT);
     $this->setLoginCaptchaTemplateFromFile($directory.'/'.self::LOGIN_CAPTCHA);

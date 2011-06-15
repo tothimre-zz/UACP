@@ -13,21 +13,19 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    */
+require_once 'framework/tests/unit/UacpMockFactoryTestCase.php';
 
-require_once 'tests/unit/UacpMockFactoryTestCase.php';
+use Uacp\Ui\AuthBoxSimple;
+use Uacp\Ui\InterfaceAuth;
 
 class AuthBoxSimpleTest extends UacpMockFactoryTestCase
 {
   public function testShow()
   {
-
     $getUserNameInterface=$this->GetUserNameInterface($this->getAuthMock());
-
-    $auth=$getUserNameInterface->getAuth();
-
-    $authBox=new AuthBoxSimple($auth,$getUserNameInterface);
-
-    $sessionMock=$this->getMockSessionHandler();
+    $auth = $getUserNameInterface->getAuth();
+    $authBox = new AuthBoxSimple($auth,$getUserNameInterface);
+    $sessionMock = $this->getMockSessionHandler();
     /*
      * This is a must have line if you would test this function because
      * the captcha support relies on the session support of the php
@@ -42,4 +40,3 @@ class AuthBoxSimpleTest extends UacpMockFactoryTestCase
   }
 
 }
-?>

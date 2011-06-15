@@ -14,7 +14,7 @@
    limitations under the License.
    */
 
-require_once 'tests/unit/UacpMockFactoryTestCase.php';
+require_once 'framework/tests/unit/UacpMockFactoryTestCase.php';
 
 /**
  * This unittest is a tester for the Template, TemplateLogin, TemplateCaptcha, 
