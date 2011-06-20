@@ -5,6 +5,11 @@
  */
 require '../../../framework/autoload.php';
 
+use Uacp\Core\Templating\GetUserNameInterface;
+use Uacp\Core\Auth\Auth;
+use Uacp\Ui\AuthBoxFromDirectory;
+
+
 /**
  * Implementing of getting the "String" value  of the user.
  */

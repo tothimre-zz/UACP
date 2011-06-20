@@ -5,6 +5,11 @@
  */
 require '../../../framework/autoload.php';
 
+use Uacp\Core\Templating\GetUserNameInterface;
+use Uacp\Core\Auth\Auth;
+use Uacp\Ui\AuthBoxSimple;
+
+
 class MyGetUserNameInterface implements GetUserNameInterface{
   public function getUserName(){
     return $_SESSION['UACP_USER_DATA'];
