@@ -14,6 +14,8 @@
    limitations under the License.
    */
 
+namespace Uacp\Core\Auth;
+
 /**
  * This interface unifies the nterfaceAuthDataSource and the
  * InterfaceAuthProcess interfaces. It is one key for the system flexibility.

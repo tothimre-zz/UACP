@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+namespace Uacp\Core\Auth;
+
 /**
  * This abstract class models the default user log in scenario. It is usable
  * in most possible cases. It implements the InterfaceAuthProcess interface

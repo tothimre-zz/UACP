@@ -14,21 +14,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+namespace Uacp\Core\Templating;
+
 /**
  *This interface contains a few constants
  */
 interface TemplateInterface {
-  
-  const INPUT_HANDLER_URL_INDEX          ='HandlerUrl';
-  const SUBMIT_INDEX_FOR_HTML_FORM_INPUT      ='InputSubmitString';
-  const SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT   ='uacp_submit';
-  const USER_NAME_INDEX_FOR_HTML_FORM_INPUT      ='UsernameInputString';
-  const USER_NAME_VALUE_FOR_HTML_FORM_INPUT      ='uacp_user';
-  const USER_PASS_INDEX_FOR_HTML_FORM_INPUT      ='PasswordInputString';
-  const USER_PASS_VALUE_FOR_HTML_FORM_INPUT      ='uacp_pass';
-  const USER_NAME_LABEL_INDEX            ='UsernameLabel';
-  const CAPTCHA_IMAGE_INDEX            ='CaptchaImage';
-  const CAPTCHA_INPUT_INDEX_FOR_HTML_FORM_INPUT   ='CaptchaInputString';
-   const CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT   ='captcha_code';
+
+  const INPUT_HANDLER_URL_INDEX = 'HandlerUrl';
+  const SUBMIT_INDEX_FOR_HTML_FORM_INPUT = 'InputSubmitString';
+  const SUBMIT_INDEX_VALUE__FOR_HTML_FORM_INPUT = 'uacp_submit';
+  const USER_NAME_INDEX_FOR_HTML_FORM_INPUT = 'UsernameInputString';
+  const USER_NAME_VALUE_FOR_HTML_FORM_INPUT = 'uacp_user';
+  const USER_PASS_INDEX_FOR_HTML_FORM_INPUT = 'PasswordInputString';
+  const USER_PASS_VALUE_FOR_HTML_FORM_INPUT = 'uacp_pass';
+  const USER_NAME_LABEL_INDEX = 'UsernameLabel';
+  const CAPTCHA_IMAGE_INDEX = 'CaptchaImage';
+  const CAPTCHA_INPUT_INDEX_FOR_HTML_FORM_INPUT = 'CaptchaInputString';
+  const CAPTCHA_INPUT_VALUE_FOR_HTML_FORM_INPUT = 'captcha_code';
+
 }
 ?>

@@ -5,7 +5,7 @@
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+     http://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,6 +14,12 @@
    limitations under the License.
    */
 
+namespace Uacp\Ui;
+
+use Uacp\Core\Templating\AuthTemplate;
+use Uacp\Core\Templating\TemplateLogout;
+use Uacp\Core\Templating\TemplateLogin;
+use Uacp\Core\Templating\TemplateLoginCaptcha;
 /**
  *
  * The implemetations of this class take care for the user iterface.
@@ -21,7 +27,6 @@
  * @abstract
  *
  */
-
 abstract class AuthBoxProto extends AuthTemplate
 {
   /**
@@ -39,18 +44,16 @@ abstract class AuthBoxProto extends AuthTemplate
    * @param GetUserNameInterface $getUserNameInterface
    *
    */
-  function __construct(InterfaceAuth $auth, $getUserNameInterface=null)
+  function __construct($InterfaceAuth, $getUserNameInterface=null)
   {
     /*
      * This initializes the templates without exact template strings.
      */
-    $this->auth=$auth;
-    $templateLogout=new TemplateLogout(null,$auth,null,$getUserNameInterface);
+    $this->auth=$InterfaceAuth;
+    $templateLogout=new TemplateLogout(null,$InterfaceAuth,null,$getUserNameInterface);
     $templateLogin=new TemplateLogin();
     $templateLoginCaptcha=new TemplateLoginCaptcha();
-    
     parent::__construct($templateLogout, $templateLogin, $templateLoginCaptcha, 3);
   }
 
 }
-?>

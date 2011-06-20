@@ -13,7 +13,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    */
+namespace Uacp\Core\Templating;
 
+use Uacp\Core\Globalhandlers\PhpSessionHandler;
+use Uacp\Core\Globalhandlers\PhpPostHandler;
+use Uacp\Core\Globalhandlers\GlobalHandlerInterface;
+use Uacp\Core\Globalhandlers\PhpGetHandler;
 
 /**
  * The purpose if this class is to give back a html login box.
@@ -39,7 +44,7 @@ class AuthTemplate{
    * @var TemplateLoginCaptcha
    */
   private $templateLogInCaptcha=null;
-  
+
   private $beforeCaptcha=null;
 
   /**
@@ -243,10 +248,10 @@ class AuthTemplate{
   /**
    * Sets the session handler interface.
    *
-   * @param PhpSessionHandlerInerface $sessionHandler
+   * @param SessionHandlerInerface $sessionHandler
    * @return none
    */
-  public function setSessionhandler(SessionHandlerInterface $sessionHandler){
+  public function setSessionhandler($sessionHandler){
     $this->sessionHandler=$sessionHandler;
   }
 
@@ -262,7 +267,7 @@ class AuthTemplate{
   public function setTemplateLogOut(TemplateLogout $template){
     $this->templateLogOut=$template;
   }
-  
+
   public function setUserDataHandler(GlobalHandlerInterface $handler){
     $this->userDataHandler=$handler;
   }
@@ -299,13 +304,12 @@ class AuthTemplate{
     $sessionHandlerSessionId=$this->sessionHandler->session_id();
 
     if(empty($phpSessionId)&&(!empty($this->templateLogInCaptcha))){
-      throw new Exception('If you wish to use captcha support in UACP, please start the session, with session_start(), or simply enable the session auto start feature.');
+      throw new \Exception('If you wish to use captcha support in UACP, please start the session, with session_start(), or simply enable the session auto start feature.');
     }
     if(empty($sessionHandlerSessionId)&&(!empty($this->afterLoginUrl)||!empty($this->logoutUrl))){
-      throw new Exception('Use the Redirecting support, please start the session, with session_start(), or simply enable the session auto start feature.');
+      throw new \Exception('Use the Redirecting support, please start the session, with session_start(), or simply enable the session auto start feature.');
     }
-
-        $this->handleUserValues();
+    $this->handleUserValues();
 
     if (!$this->templateLogOut->getAuth()->isLoggedIn())
     {
@@ -346,8 +350,6 @@ class AuthTemplate{
     {
       $actTemplate=$this->templateLogOut;
     }
-
-
     return $actTemplate;
   }
 
@@ -413,6 +415,5 @@ class AuthTemplate{
       }
     }
   }
-
 }
 ?>
