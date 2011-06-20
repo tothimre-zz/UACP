@@ -35,5 +35,8 @@
 
 //	define('URL_OF_UACP','http://localhost/UACP/framework/');
 	define('URL_OF_UACP_CHANGEME','changeme');
-	define('URL_OF_UACP',URL_OF_UACP_CHANGEME);
-?>
+        if(!isset($unittesting)) {
+	  define('URL_OF_UACP',URL_OF_UACP_CHANGEME);
+        } else {
+          define('URL_OF_UACP','unittesting');
+        }

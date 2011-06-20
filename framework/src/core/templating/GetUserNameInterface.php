@@ -19,9 +19,11 @@ limitations under the License.
  * and open the template in the editor.
  */
 
+namespace Uacp\Core\Templating;
+
 interface GetUserNameInterface {
 
   public function getUserName();
-  
+
 }
 ?>

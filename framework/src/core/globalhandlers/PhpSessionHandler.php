@@ -13,6 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
+namespace Uacp\Core\Globalhandlers;
+
 /**
  * This is a reference implementation of the PhpSessionHandlerInterface it
  * works in the 99 percent of the cases so freely use it as the framework
@@ -23,48 +26,48 @@ limitations under the License.
  */
 class PhpSessionHandler implements SessionHandlerInterface{
 
-	/**
-	 * This function is a must have here because without this the program cannot garantee
-	 * the needed behaviour.
-	 */
-	private function sessionCheck(){
-		$sid=session_id();
-		if(!$sid){
-			if(!headers_sent()){
-				session_start();
-			}
-			else{
-				throw new Exception("If you would use the PHpSessionHandler in your Instance of AuthTemplate please start the php session before you send the headers!!");
-			}
-		}
-	}
-	public function setValue($index,$value){
-		$this->sessionCheck();
-		$_SESSION[$index]=$value;
-	}
+  /**
+   * This function is a must have here because without this the program cannot garantee
+   * the needed behaviour.
+   */
+  private function sessionCheck(){
+    $sid=session_id();
+    if(!$sid){
+      if(!headers_sent()){
+        session_start();
+      }
+      else{
+        throw new Exception("If you would use the PHpSessionHandler in your Instance of AuthTemplate please start the php session before you send the headers!!");
+      }
+    }
+  }
+  public function setValue($index,$value){
+    $this->sessionCheck();
+    $_SESSION[$index]=$value;
+  }
 
-	public function getValue($index){
-		$this->sessionCheck();
-		if(isset($_SESSION[$index])){
-			return $_SESSION[$index];
-		}else{
-			return null;
-		}
-	}
-	/**
-	 * (non-PHPdoc)
-	 * @see core/templating/PhpSessionHandlerInerface#session_id()
-	 */
-	public function session_id(){
-		return session_id();
-	}
+  public function getValue($index){
+    $this->sessionCheck();
+    if(isset($_SESSION[$index])){
+      return $_SESSION[$index];
+    }else{
+      return null;
+    }
+  }
+  /**
+   * (non-PHPdoc)
+   * @see core/templating/PhpSessionHandlerInerface#session_id()
+   */
+  public function session_id(){
+    return session_id();
+  }
 
-	/**
-	 * (non-PHPdoc)
-	 * @see core/templating/PhpSessionHandlerInerface#session_start()
-	 */
-	public function session_start(){
-		session_start();
-	}
+  /**
+   * (non-PHPdoc)
+   * @see core/templating/PhpSessionHandlerInerface#session_start()
+   */
+  public function session_start(){
+    session_start();
+  }
 }
 ?>

@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+namespace Uacp\Core\Auth;
+
 /**
  * This interface Is the most important thing to understand in the system
  * The core abstraction that makes it reusable is hidden below

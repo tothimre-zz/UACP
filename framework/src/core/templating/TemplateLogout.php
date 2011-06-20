@@ -14,15 +14,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+namespace Uacp\Core\Templating;
+
 /**
- * 
- * 
+ *
+ *
  */
 class TemplateLogout extends Template{
-
   /**
-   * It is an instance of the InterfaceAuth it is 
-   *  
+   * It is an instance of the InterfaceAuth it is
+   *
    * @var InterfaceAuth
    */
   private $auth=null;
@@ -40,13 +41,14 @@ class TemplateLogout extends Template{
    * @param string $handleUrl
    * @param GetUserNameInterface $getUserNameInterface
    */
-  function __construct($template=null, InterfaceAuth $auth=null, $handleUrl=null, $getUserNameInterface=null){
+  function __construct($template=null, $auth=null, $handleUrl=null,
+                                                      $getUserNameInterface=null){
     parent::__construct($template,$handleUrl);
     $this->auth=$auth;
     if($getUserNameInterface!=null)
       $this->setGetUserNameInterface($getUserNameInterface);
   }
-  
+
   /**
    * Redefines the original function, or extends it by giving more template 
    * variables regarding the logout process 
@@ -67,5 +69,3 @@ class TemplateLogout extends Template{
     $this->getUserNameInterface=$getUserNameInterface;
   }
 }
-
-?>
