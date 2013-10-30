@@ -9,6 +9,7 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false">
+         
     <testsuites>
         <testsuite name="phpUnit Test Suite">
             <directory>./framework/tests/unit/</directory>
