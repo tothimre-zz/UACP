@@ -9,14 +9,12 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false">
-    
-         
+   
     <testsuites>
         <testsuite name="phpUnit Test Suite">
             <directory>./framework/tests/unit/</directory>
         </testsuite>
     </testsuites>
-    
     
     <logging>
          <log type="coverage-html" target="build/coverage" title="UACP"
@@ -27,3 +25,4 @@
     </logging>
     
 </phpunit>
+
