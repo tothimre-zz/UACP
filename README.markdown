@@ -81,4 +81,4 @@ along with GeSHi; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 ####
-More composer loving support is coming. Also twig and it's friends
+More composer loving support is coming. Also twig and it's friends.
